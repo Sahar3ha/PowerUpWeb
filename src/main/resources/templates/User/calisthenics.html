@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/Css/assets/weightlifting.css">
+    <script src="Js/home.js"></script> 
+
+    <title>Calisthenics</title>
+</head>
+<body>    
+    
+<div class="contents" id="myform">
+       
+        <form action="" class="login_form">
+            <div>
+                <h1 class="login_title">
+                    <span>Membership Registration</span>
+                </h1>
+                <p class="logindesp">
+                    Join Us!
+                </p>
+            </div>
+            <div> 
+                <div class="logininputs">
+                    <div>
+                        <label for="" class="loginlabel">Name</label>
+                        <input type="text" id="fname" placeholder="Enter your Fullname" required class="login-inputs">
+                    </div>
+                    <div>
+                        <label for="" class="loginlabel">Email</label>
+                        <input type="email" id="email" placeholder="Enter your email" required class="login-inputs">
+                    </div>
+                    <div class="apply">
+                        <label for="">Applying for :</label>
+                        <select class="select" name="" id="list">
+                            <option class="opt" value="Weightlifting" >
+                                Weightlifting
+                            </option>
+                            <option class="opt" value="Boxing" >
+                                Boxing
+                            </option>
+                            <option class="opt" value="Calisthenics" >
+                                Calisthenics
+                            </option>
+                        </select>
+                    </div>
+                    <div class="period">
+                        <input type="checkbox" class="checkboxes" name="p" id="1" onclick="fn()" />
+                        <label for="checkbox">1 month</label>
+                        <input type="checkbox" class="checkboxes" name="p" id="6"onclick="fn()" />
+                        <label for="checkbox">6 month</label>
+                        <input type="checkbox" class="checkboxes" name="p" id="12" onclick="fn()"/>
+                        <label for="checkbox">12 month</label>
+                    </div>
+                </div>
+               
+            </div>
+            <div>
+                <div class="login_buttons">
+                    <button class="login-button" onclick="print()">Register</button>
+                    <button class="login-button" onclick="openForm()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    
+    
+        <div class="container" id="ass">
+        <header>
+        <nav>
+            <h2 class="logo" > <a href=""> Power <span>Up</span></a></h2>
+            <ul >
+                <li>
+                    <button class="items">
+                       <a href="">Home</a> 
+                    </button>
+                </li>
+                 <li >
+                    <button class="items">
+                        <a href="">Contacts</a>
+                    </button>
+                </li>
+                <li>
+                    <button class="items">
+                        <a href="">Package&Plans</a>
+                    </button>
+                </li>
+                <li>
+                    <button class="items">
+                        <a href="">Contacts</a>
+                    </button>
+                </li> 
+            </ul>
+            <div class="rbtn">
+                <button onclick="registerbtn()" class="Register-btn">
+                    <a href="../Html_daily/Login.html">Register Now</a> 
+                </button>
+            </div>
+            <i class="ri-menu-line"></i>
+        </nav>
+        </header>
+       
+    
+        <div class="body-class" >
+            <div class="head">
+            <span>Calisthenics</span>
+            </div>
+            <div class="package-sec">
+                <div class="area">
+                <div class="img-sec-calisthenics">
+                    <span class="ss"></span>
+                </div>
+                <div >
+                    <p>Learn and master the art of weightlifting with professional trainers.<br>Give us a chance and find out what your body is capable of.</p>   
+                </div>
+                <div>
+                    <table class="table ">
+                        <thead class="thead">
+                            <tr>
+                                <th>Duration</th>
+                                <th>Price</th>
+                            </tr>
+                            <tbody>
+                            <tr>
+                                <td>1 month</td>
+                                <td>Rs. 1000</td>   
+                            </tr>
+                            <tr>
+                                <td>6 month</td>
+                                <td>Rs. 6000</td>   
+                            </tr>
+                            <tr>
+                                <td>12 month</td>
+                                <td>Rs. 12000</td>   
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    
+                </div>
+                </div>
+                <div class="but" >
+                    <button class="assign" id="ass" onclick="openForm()">Join Us</button>
+                    <button class="option" id="myButton" onclick="optionbtn()">See other options ➡</button>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+
+</body>
+</html>

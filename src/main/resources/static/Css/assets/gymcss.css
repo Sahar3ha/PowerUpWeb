@@ -1,0 +1,39 @@
+.container{
+    width: 100%;
+    background-color: rgb(14, 12, 26);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    transition: grey .3s;
+}
+.menu{
+    justify-content: space-between;
+    height: 0rem;
+    position: sticky;
+} 
+
+.list{
+    justify-content: space-evenly;
+    display: flex;
+}  
+
+
+.logo, 
+.menutoggle {
+    display: flex;
+    cursor: pointer;
+    font-size: 1.25rem;
+}
+.logo{
+    align-items: center;
+    column-gap: .5rem;
+    font-weight: bold;
+    z-index: 2;
+}
+.logo{
+    width: 6rem;
+}
+
+
+

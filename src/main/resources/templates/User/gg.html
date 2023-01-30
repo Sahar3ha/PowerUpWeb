@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{~/Css/assets/gss.css}" rel="stylesheet"/>
+
+    <script th:src="@{~/Js/timer.js}"></script>
+    <script th:src="@{~/Js/home.js}"></script>
+    <script th:src="@{https://kit.fontawesome.com/e3db4c63f8.js}" crossorigin="anonymous"></script>
+    <title>GG</title>
+</head>
+<body>
+    <header>
+        <nav >
+            <h2 class="logo" > <a href=""> Power <span>Up</span></a></h2>
+            <ul >
+                <li>
+                    <button class="items">
+                       <a href="">Home</a> 
+                    </button>
+                </li>
+                 <li >
+                    <button class="items">
+                        <a href="">Contacts</a>
+                    </button>
+                </li>
+                <li>
+                    <button class="items">
+                        <a href="#package">Package&Plans</a>
+                    </button>
+                </li>
+                <li>
+                    <button class="items">
+                        <a href="">About Us</a>
+                    </button>
+                </li> 
+            </ul>
+            <div class="rbtn">
+                <button onclick="registerbtn()" class="Register-btn">
+                    <a href="/Signup.html">Register Now</a> 
+                </button>
+            </div>
+            <i class="ri-menu-line"></i>
+        </nav>
+    </header>
+
+    <main>
+        <div class="clock">  
+        <div class="cc">
+            <div>
+                <p id="days">00</p>
+                <span>Days</span>
+            </div>
+            <div>
+                <p id="hours">00</p>
+                <span>Hours</span>
+            </div>
+            <div>
+                <p id="minutes">00</p>
+                <span>Minutes</span>
+            </div>
+            <div>
+                <p id="seconds">00</p>
+                <span>Seconds</span>
+            </div>
+        
+        </div>
+
+            <div class="NY">
+                   UNTIL NEXT YEAR
+               <span class="MC">MAKE IT COUNT!</span>
+            </div>
+        
+        </div>
+        <div id="package" class="programs">
+            <span class="program_span">Our Programs</span>
+                <div class="content">
+                <div class="weightlifting">
+                    <span>Weightlifting</span>
+                    <p>Learn and master the art <br/>
+                        of lifting with professional trainers</p> 
+                </div>
+                <div class="boxing">
+                    <span>Boxing</span>
+                    <p>Learn and master the art <br/>
+                        of lifting with professional trainers</p> 
+                </div>
+                <div class="calisthenics">
+                    <span>Calisthenics</span>
+                    <p>Learn and master the art <br/>
+                        of lifting with professional trainers</p> 
+                </div>
+            </div>
+            </nav>
+        </div>
+
+       
+
+    </main>
+    <footer>
+        <div class="about">
+           <span>About Us</span> 
+           <p>Helping to build a stable life form with physical stablitly. <br/>Physical stability leads to mental stability as well</p>
+        </div>
+        <div class="top">
+                <p>Contact Us</p>
+                <p>Email : <a href="">powerup2@gmail.com</a> </p>
+                <p>Phone : <a href="">9825565551</a></p>
+        </div>
+        <div class="bottom">
+            Copyright © <a href=""><span>Power</span> Up</a> All Rights Reserved
+        </div>
+    </footer>
+    
+</body>
+</html>

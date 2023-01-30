@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{~/Css/assets/gss.css}">
+    <title>Category</title>
+</head>
+<body>
+    <header>
+        <nav >
+            <h2 class="logo" > <a href=""> Power <span>Up</span></a></h2>
+            <ul >
+                <li>
+                    <button class="items">
+                       <a href="">Home</a> 
+                    </button>
+                </li>
+                 <li >
+                    <button class="items">
+                        <a href="">Contacts</a>
+                    </button>
+                </li>
+                <li>
+                    <button class="items">
+                        <a href="#package">Package&Plans</a>
+                    </button>
+                </li>
+                <li>
+                    <button class="items">
+                        <a href="">About Us</a>
+                    </button>
+                </li> 
+            </ul>
+            <div class="rbtn">
+                <button onclick="registerbtn()" class="Register-btn">
+                    <a href="/Signup.html">Register Now</a> 
+                </button>
+            </div>
+            <i class="ri-menu-line"></i>
+        </nav>
+    </header>
+    <div class="category">
+        <form class="add-category" th:method="post" th:action="@{/user/image}" th:object="${category}" enctype="multipart/form-data">
+            <div class="info">
+                <div>
+                    <label class="plabel">Name</label>
+                    <input type="text" th:field="*{categoryName}" th:value="${category.categoryName}" placeholder="Enter your Name" required class="pinputs">
+                </div>
+                <div>
+                    <input type="file" name="image" accept="image/*" class="form-control-file">
+                </div>
+                <div>
+                    <label class="plabel">Description</label>
+                    <input type="text" th:field="*{categoryDescription}" th:value="${category.categoryDescription}" required class="pinputs">
+                </div>
+                </div>
+                <div>
+                    <button type="submit" class="profilebtn">Add</button>
+                </div>
+        </form>
+    </div>
+    
+</body>
+</html>

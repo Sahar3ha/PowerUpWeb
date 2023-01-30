@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{~/Css/assets/gss.css}">
+    <script src="Js/timer.js"></script>
+    <script src="../Html_daily/Js/home.js"></script>
+    <script src="https://kit.fontawesome.com/e3db4c63f8.js" crossorigin="anonymous"></script>
+    <title>Profile</title>
+</head>
+<body>
+    <header>
+        <nav >
+            <h2 class="logo" > <a href=""> Power <span>Up</span></a></h2>
+            <ul >
+                <li>
+                    <button class="items">
+                       <a href="">Home</a> 
+                    </button>
+                </li>
+                 <li >
+                    <button class="items">
+                        <a href="">Contacts</a>
+                    </button>
+                </li>
+                <li>
+                    <button class="items">
+                        <a href="#package">Package&Plans</a>
+                    </button>
+                </li>
+                <li>
+                    <button class="items">
+                        <a href="">About Us</a>
+                    </button>
+                </li> 
+            </ul>
+            <div class="rbtn">
+                <button onclick="registerbtn()" class="Register-btn">
+                    <a href="/Signup.html">Register Now</a> 
+                </button>
+            </div>
+            <i class="ri-menu-line"></i>
+        </nav>
+    </header>
+
+    <div class="admin-body">
+        <span>Admin</span>
+        <form class="admin" action="" method="get">
+            <div>
+                <button class="adminbtn">Members</button>
+                <button class="adminbtn">Add category</button>
+            </div>
+        </form>
+    </div>
+    
+</body>
+</html>

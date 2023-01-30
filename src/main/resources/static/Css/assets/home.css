@@ -1,0 +1,86 @@
+body{
+    background-color: black;
+}
+.utilities{
+    margin-top:0rem;
+    margin-left: 1rem;
+    
+}
+
+.home ,.search, .playlist, .profile{
+    cursor: pointer;
+}
+
+.home:hover{
+    transition: all .4s;
+    transition-duration: .4s;
+    background-color: rgb(29, 233, 29);
+    box-shadow: 0 6px 24px rgba(240, 168, 168, 0.3);
+}
+.home{
+    margin-top: 4rem;
+    border-radius: 4rem;
+    padding: 4px;
+}
+.search {
+    border-radius: 4rem;
+    padding: 4px;
+    margin-top: 1rem;
+    display:block;
+}
+.bar{
+    display: none;
+}
+
+.search:hover .bar {
+    display: block;
+
+}
+.playlist{
+    display:block;
+    border-radius:4rem;
+    padding: 4px;
+    margin-top: 1rem;
+}
+.whole{
+    border-right: 2px solid rgb(241, 1, 49);
+    width:15rem;
+    height: 100vh;
+    box-shadow: 0 6px 44px;
+}
+.profile{
+    margin-top: 1rem;
+    margin-left: 60rem;
+    border-radius: 3rem;
+    padding:.5rem;
+    display: flex;
+}
+.container .mainbody{
+    display: flex;
+    align-items: center;
+    padding: 0px 20px ;
+}
+
+.container .mainbody .wave{
+    width: 30px;
+    height: 30px;
+    border: 1px solid white;
+    padding-bottom: 5px;
+}
+
+.container .mainbody .wave .wave1{
+    width: 3px;
+    height: 10px;
+    margin-right: 3px;
+    border-radius: 10px 10px 0px 0px;
+    background: aqua;
+    animation: wave 2s linear infinite;
+}
+
+.container .mainbody .wave .wave1:nth-child(2){
+    height: 13px;
+}
+
+.container .mainbody .wave .wave1:nth-child(3){
+    height: 8px;
+}
