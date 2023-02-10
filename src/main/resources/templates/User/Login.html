@@ -24,13 +24,13 @@
                 <div class="logininputs">
                     <div>
                         <label  class="loginlabel">Email</label>
-                        <input type="email" placeholder="Enter your email" required class="login-inputs">
+                        <input name="email" type="email" placeholder="Enter your email" required class="login-inputs">
                     </div>
                     <div>
                         <label  class="loginlabel">Password</label>
                         
                         <div class="loginbox ">
-                            <input type="password" placeholder="Enter your password" required class="login-inputs" id="input-pass">
+                            <input name="password" type="password" placeholder="Enter your password" required class="login-inputs" id="input-pass">
                             <i class="ri-eye-off-line login-eye" id="input-icon"></i>
                         </div>    
                     </div>
@@ -43,7 +43,7 @@
             <div>
                 <div class="login_buttons">
                     <button type="submit" class="login-button">Login</button>
-                    <button onclick="registerbtn()" class="login-button signup"><a href="signup.html">Signup</a></button>
+                    <button type="button" id="registerbtnssb" th:onclick="registerbtn()" class="login-button signup">Signup</button>
                 </div>
 <!--                <a href="#" class="login_forgot">Forgot Password?</a>-->
             </div>

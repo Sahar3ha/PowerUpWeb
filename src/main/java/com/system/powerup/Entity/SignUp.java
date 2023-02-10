@@ -1,20 +1,23 @@
 package com.system.powerup.Entity;
 
 import jakarta.persistence.*;
+import jdk.jshell.Snippet;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;
-//@Builder
+@Builder
 //@Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "signup")
+@Table(name = "signup", uniqueConstraints = {
+        @UniqueConstraint(name = "UNIQUE_user_email", columnNames = "email")
+})
 public class SignUp implements UserDetails {
     @Id
     @SequenceGenerator(name = "pms_user_seq_gen", sequenceName = "pms_user_id_seq", allocationSize = 1)
@@ -24,11 +27,12 @@ public class SignUp implements UserDetails {
     @Column(nullable = false)
     private String email;
 
-    @Column(name = "fullName")
+
     private String fullName;
 
-    @Column(name = "password")
+    @Column(nullable = true)
     private String password;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

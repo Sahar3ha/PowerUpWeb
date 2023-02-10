@@ -7,17 +7,20 @@ import com.system.powerup.services.MembershipService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
 @Service
 @RequiredArgsConstructor
 public class MemebershipServiceImpl implements MembershipService {
     private final MembershipRepo membershipRepo;
     @Override
-    public String saveMember(MembershipPojo membershipPojo) {
+    public MembershipPojo saveMember(MembershipPojo membershipPojo)throws IOException {
         Membership membership = new Membership();
-        membership.setName(membership.getName());
-        membership.setCategory(membership.getCategory());
+        membership.setName(membershipPojo.getName());
+        membership.setCategory(membershipPojo.getCategory());
+        membership.setEmail(membershipPojo.getEmail());
+        membership.setDuration(membershipPojo.getDuration());
         membershipRepo.save(membership);
-        return "creates";
-
+        return new MembershipPojo(membership);
     }
 }

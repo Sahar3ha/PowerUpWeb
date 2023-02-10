@@ -46,23 +46,24 @@
 
     <div class="profile-body">
         <span>Profile</span>
-        <form class="profile" th:action="@{/signup/edit}" th:object="${signup}" th:method="post">
+        <form class="profile" th:action="@{/signup/edit}" th:object="${userList}" th:method="post">
             <div class="info">
+                <input  hidden th:value="${userList.id}"   type="text"  required class="pinputs">
             <div>
                 <label class="plabel">Full Name</label>
-                <input th:value="${signup.fullName}" type="text" placeholder="Enter your Name" required class="pinputs">
+                <input  th:field="*{fullName}" th:value="${userList.fullName}"   type="text"  required class="pinputs">
             </div>
             <div>
                 <label class="plabel">Email</label>
-                <input type="email" th:value="${signup.email}" placeholder="Enter your Email" required class="pinputs">
+                <input th:field="*{email}" th:value="${userList.fullName}"   type="email"     required class="pinputs">
             </div>
             <div>
                 <label class="plabel">Membership for</label>
-                <input type="text" required class="pinputs">  
+                <input type="text" required class="pinputs">
             </div>
             </div>
             <div>
-                <button class="profilebtn">Update</button>
+                <button type="submit" class="profilebtn">Update</button>
             </div>
         </form>
     </div>

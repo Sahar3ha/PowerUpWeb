@@ -145,7 +145,9 @@ nav button a{
     background-color: rgb(58, 55, 55);
     align-items: center;
     /* margin-inline: 1.5rem; */
+    /* display: grid; */
     border: 12px black;
+    justify-content: space-between;
 }
 .body-class .package-sec .area{
     display: flex;
@@ -154,14 +156,15 @@ nav button a{
 
 
 .body-class .package-sec .area .img-sec span{
-    background-image: url(pexels-victor-freitas-841130.jpg);
+    background-image: url(../assets/pexels-victor-freitas-841130.jpg);  
     background-size: cover;
     padding: 120px;
     display: grid;
+    flex:1;
 }
 
 .body-class .package-sec .but {
-display: flex;
+/* display: flex; */
 justify-content: space-around;
 padding-left: 7%;
 }
@@ -190,8 +193,14 @@ padding-left: 7%;
     /* position: relative; */
     padding-bottom: 22%;
     padding-top:12%;
+    flex: 1;
 }
 
+.body-class .package-sec .area .divtable{
+    flex: 1;
+    display: grid;
+
+}
 .body-class .package-sec button{
     padding: 12px;
     justify-content: center;    
@@ -209,7 +218,7 @@ button{
 /* ----- For Boxing ----- */
 
 .body-class .package-sec .area .img-sec-boxing span{
-    background-image: url(chris-kendall-sJ6az6-T1u8-unsplash.jpg);
+    background-image: url(../assets/chris-kendall-sJ6az6-T1u8-unsplash.jpg);  
     background-size: cover;
     padding: 120px;
     display: grid;
@@ -238,7 +247,7 @@ button{
 /* ----- For Calisthenics----- */
 
 .body-class .package-sec .area .img-sec-calisthenics span{
-    background-image: url(5810853.jpg);
+    background-image: url(../assets/5810853.jpg);  
     background-size: cover;
     padding: 120px;
     display: grid;
@@ -431,6 +440,8 @@ button{
     margin: 25px 0;
     min-width: 400px;
     justify-content: center;
+    background-color: grey;
+    /* display: grid; */
 }
 
 .table thead tr{

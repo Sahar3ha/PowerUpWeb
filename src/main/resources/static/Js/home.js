@@ -1,8 +1,18 @@
-//*------- For Home Page -------*/
-function registerbtn(){
-    window.location="signup.html";
-}
+// *------- For Home Page -------*/
 
+
+
+    // document.getElementById("registerbtn").addEventListener("click", function (){
+    //     fetch("/login")
+    //         .then(response => response.text())
+    //         .then(result => {
+    //             console.log(result);
+    //         });
+    // });
+
+function registerbtn(){
+    window.location.href="/signup/signup"
+}
 
 
 function optionbtn() {
@@ -74,7 +84,7 @@ function print(){
 
         
     }else{
-        alert("milena k putti muji")
+        alert("")
     }
 
 

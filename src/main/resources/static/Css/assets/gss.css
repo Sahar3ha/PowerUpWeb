@@ -8,18 +8,38 @@ html{
     box-sizing: border-box;
     font-family:'Josefin Sans',sans-serif;
 }
+#bgimg{
+    z-index:0;
+    /* background-image: url(../assets/pexels-estudio-polaroid-3112004.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* adjust height as needed */
+    width: 100%; /* adjust width as needed */
+    position: absolute;
+}
+#bgimg img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5; /* adjust opacity as needed */
+  }
 
 body{
-    background-color: black;
-    background-image: url(pexels-estudio-polaroid-3112004.jpg);
+    /* background-color: black; */
+    /* background-image: url(../assets/pexels-estudio-polaroid-3112004.jpg);   */
     background-size: cover;
     /* position: relative; */
+    /* z-index: 1; */
 }
 .ri-menu-line{
     display: none;
 } 
 header{
     width: 100%;
+    font-size: 18px;
     /* margin-bottom: 20%; */
     padding: 30px 5%;
     top: 0;
@@ -34,6 +54,7 @@ header{
     
 }
 nav{
+    
     align-items: center;
     padding-top: 0.2rem;
     padding-left: 5%;
@@ -74,6 +95,7 @@ nav ul li:hover{
 }
 nav button a{
     text-decoration: none;
+    font-size: 18px;
     color: white; 
 }
 
@@ -179,9 +201,9 @@ main div .cc p{
 main .programs span{
     display: flex;
     justify-content: center;
+    text-align: center;
     padding-top: 3%;
     padding-bottom: 2%;
-    transition: .5s;
 }
 
 main .programs {
@@ -191,12 +213,11 @@ main .programs {
     z-index: 0;
 }
 main .programs .program_span{
-    display: flex;
-    padding-top: 3%;
-    padding-bottom: 2%;
-    justify-content: center;
+    
     color: blanchedalmond;
     background-color: rgb(10, 10, 17);
+    font-size: 26px;
+    font-weight: bold;
 }
 
 
@@ -218,6 +239,7 @@ main .programs .program_span{
 main .programs .content span{
     color: rgb(248, 248, 248);
     padding-bottom: 2rem;
+    z-index: 2;
 }
 
 main .programs .content a{
@@ -227,32 +249,87 @@ main .programs .content a{
 
 
 .content .weightlifting{
-    background-image: url(pexels-victor-freitas-841130.jpg);
-    background-size: cover;
     padding: 12px 20px 200px;
     cursor: pointer;
     transition: 0.5s;
-    /* box-shadow: 5px 0px 5px rgb(10, 10, 17); */
+    width: 335px;
+    height: 335px;
+    /* box-shadow: 0px 0px 2px 2px rgba(218, 178, 208,0.3); */
 }
+.weightlifting span {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+  }
+  
+  .weightlifting p {
+    font-size: 18px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
 
 .content .boxing{
-    background-image: url(chris-kendall-sJ6az6-T1u8-unsplash.jpg);
-    background-size: cover;
     padding: 12px 20px 200px;
     cursor: pointer;
     transition: 0.5s;
+    width: 335px;
+    height: 335px;
 }
+.boxing span {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+  }
+  
+  .boxing p {
+    font-size: 18px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
 .content .calisthenics{
-    background-image: url(janapan_top.jfif);
-    background-size: cover;
     padding: 12px 20px 200px;
     cursor: pointer;
     transition: 0.5s;
+    width: 335px;
+    height: 335px;
 }
+.calisthenics span {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+  }
+  
+  .calisthenics p {
+    font-size: 18px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+.content .divimg{
+    width: 335px;
+    height: 335px;
+    position: absolute;
+    z-index: -1;
+    transition: 0.5s;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+
+    
+
+
 
 main .programs .content .weightlifting:hover{
    transform: scale(1.1);
    color: white;
+   box-shadow: none;
 }
 
 main .programs .content .weightlifting:hover span{
@@ -261,41 +338,67 @@ main .programs .content .weightlifting:hover span{
 
 main .programs .content .boxing:hover{
     transform: scale(1.1);
-    color: white;
+    color: rgb(255, 255, 255);
+    box-shadow: none;
 }
 main .programs .content .boxing:hover span{
-    color: rgb(0, 0, 0);
+    color: rgb(255, 0, 0);
 }
 
 main .programs .content .calisthenics:hover{
     transform: scale(1.1);
-    color: white;
+    color: rgb(255, 255, 255);
+    box-shadow: none;
  }
  main .programs .content .calisthenics:hover span{
-    color: rgb(0, 0, 0);
+    color: rgb(82, 76, 76);
 }
 
 footer{
     width: 100%;
-    /* margin-top: 11%; */
     bottom: 0;
-    background-color: rgba(7, 6, 6, 0.9);
+    background-color: rgb(0, 0, 0);
     align-items: center;
-    z-index: 1;
+    z-index: 0;
+    position: relative;
+}
+footer .transformation{
+    display: flex;
+    justify-content: space-evenly;
+}
+footer .transformation p{
+    color: white;
+    font-size: 18px;
+    margin-top: 20%;
+    text-align: center;
+    width: 50%;
+}
+
+footer .about span{
+    color: rgb(129, 21, 21);
+    font-size: 26px;
+    font-weight: bold;
+}
+footer .about{
+    font-size: 18px;
 }
 
 footer .top{
-    color: white;
-    /* padding: 35px 20px; */
+    background-color: rgb(41, 39, 39); 
+    padding-bottom: 10%;
+}
+footer .top span{
+    color: rgb(74, 8, 255);
+    font-size: 26px;
+    font-weight: bold;
 }
 footer .top p{
-    /* padding: 12px 20px; */
+    font-size: 18px;
+    text-align: center;
 }
 
 footer .bottom{
     color: rgb(240, 231, 231);
-    /* padding: 12px 20px; */
-    /* padding-top: 20px; */
     text-decoration: none;
 } 
 footer .bottom a {
@@ -435,7 +538,7 @@ footer .bottom a span{
     padding-top: 10%;
 }
 
-.category
+/* .category */
 
 /* @media screen and (max-width:600px) {
     nav ul li a,.items,.rbtn{
@@ -455,3 +558,109 @@ footer .bottom a span{
         font-size: 1.5rem;
     }
 } */
+
+/* row coffee build section */
+/* .coffee-build {
+    margin-bottom: 60px;
+  }
+  .section-heading{
+    margin-bottom: 50px;
+  }
+  
+  .text-center, .text-center>* {
+    text-align: center;
+  }
+  
+  .section-main-heading {
+    color: #514242;
+    ;
+  }
+  
+  .section-heading h2 {
+    line-height: 1em;
+    font-family: cursive;
+    font-weight: 700;
+    font-size: 45px;
+  }
+  
+  .section-grid-banner {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 170px;
+    margin-right: 170px;
+  }
+  
+  
+  .section-support-blocks {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    width: 350px;
+  }
+  
+  .section-support-left-blocks {
+    display: grid;
+    grid-template-columns: 1fr 60px;
+    width: 350px;
+  }
+  
+  .section-support-content,
+  .section-support-right-content {
+    height: 195px;
+  }
+  
+  
+  .section-support-right-content {
+    margin-left: 40px;
+  }
+  
+  .section-support-content {
+    margin-right: 40px;
+    text-align: right;
+  }
+  
+  
+  .section-support-content .section-support-heading,
+  .section-support-right-content .section-support-heading {
+    font-size: 26px;
+    font-family: cursive;
+    font-weight: bolder;
+    padding-bottom: 10px;
+    color: #c09056;
+  
+  }
+  
+  .section-support-icon-image img,
+  .section-support-right-icon-image img {
+    width: 70px;
+    height: 70px;
+  }
+  
+  
+  .section-support-right-content .section-support-right-icon-image {
+    margin-right: 35px;
+  }
+  
+  
+  
+  .section-support-content .section-support-description,
+  .section-support-right-content .section-support-description {
+    font-size: 18px;
+    line-height: 1.5em;
+  }
+  
+  .section-grid-image {
+    margin: 0;
+    vertical-align: middle;
+    margin-top: 13px;
+    margin-left: 25px;
+  }
+  
+  .section-grid-image:hover {
+    transform: scale(1.1);
+  } */
+
+.img{
+    width: 426px;
+    height: 578px;
+    /* object-fit: cover; */
+}

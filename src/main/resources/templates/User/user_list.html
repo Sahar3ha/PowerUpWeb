@@ -1,0 +1,24 @@
+<a th:href="@{/user/register}">create new user</a>
+<table>
+    <thead>
+    <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <p th:if="${successMsg}" th:text="${successMsg}"></p>
+    <p th:if="${deleteMsg}" th:text="${deleteMsg}"></p>
+    <tr th:each="user:${userList}">
+        <td th:text="${user.fullName}"></td>
+        <td th:text="${user.email}"></td>
+
+        <td>
+            <a class="edit" th:href="@{~/user/edit/}+${user.id}">Edit</a> |
+<!--            <a class="delete" th:href="@{~/user/}+${user.id}">Delete</a>-->
+
+        </td>
+    </tr>
+    </tbody>
+</table>

@@ -2,6 +2,7 @@ package com.system.powerup.services.impl;
 
 import com.system.powerup.Entity.SignUp;
 
+import com.system.powerup.config.PasswordEncoderUtil;
 import com.system.powerup.exception.AppException;
 import com.system.powerup.pojo.SignUpPojo;
 import com.system.powerup.repo.SignUpRepo;
@@ -19,29 +20,24 @@ public class SignUpServiceImpl implements SignUpService {
 
     private final SignUpRepo signUpRepo;
     @Override
-    public String saveUser(SignUpPojo signUpPojo) {
-        SignUp sign = new SignUp();
-        sign.setEmail(signUpPojo.getEmail());
-        sign.setFullName(signUpPojo.getFullName());
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(signUpPojo.getPassword());
-        sign.setPassword(encodedPassword);
+    public SignUpPojo saveUser(SignUpPojo signUpPojo) throws IOException {
+        SignUp signUp;
+        if (signUpPojo.getId() != null) {
+            signUp = signUpRepo.findById(signUpPojo.getId()).orElseThrow(() -> new RuntimeException("Not Found"));
+        } else {
+            signUp = new SignUp();
+        }
+        signUp.setEmail(signUpPojo.getEmail());
+        signUp.setFullName(signUpPojo.getFullName());
+        signUp.setPassword(PasswordEncoderUtil.getInstance().encode(signUpPojo.getPassword()));
 
-        signUpRepo.save(sign);
-        return "creates";
-
-
-//    @Override
-//    public SignUp findByEmail(String email) {
-//        SignUp sign =signUpRepo.findByEmail(email)
-//                .orElseThrow(() -> new AppException("Invalid User email", HttpStatus.BAD_REQUEST));
-//
-//        //builder
-//
-//        return sign;
-//    }
+        signUpRepo.save(signUp);
+        return new SignUpPojo(signUp);
 
     }
+
+
+
 
     @Override
     public SignUp fetchByEmail(String email) {
@@ -63,24 +59,10 @@ public class SignUpServiceImpl implements SignUpService {
         signUpRepo.deleteById(id);
     }
 
-//    @Override
-//    public SignUp fetchByEmail(String email) {
-//        SignUp signup= signUpRepo.findById(email).orElseThrow(()-> new RuntimeException("Couldnot find"));
-//        signup = SignUp.builder()
-//                .productId(product.getProductId())
-//                .imageBase64(getImageBase64(product.getImage()))
-//                .productTitle(product.getProductTitle())
-//                .productCategory(product.getProductCategory())
-//                .productDescription(product.getProductDescription())
-//                .productPrice(product.getProductPrice())
-//                .brandName(product.getBrandName())
-//                .size(product.getSize())
-//                .build();
-//        return product;
-//    }
 
-//    @Override
-//    public List<SignUp> fetchAll() {
-//        return null;
-//    }
+
+    @Override
+    public List<SignUp> fetchAll() {
+        return signUpRepo.findAll();
+    }
 }

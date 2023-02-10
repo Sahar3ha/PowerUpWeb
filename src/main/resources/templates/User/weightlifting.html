@@ -13,7 +13,7 @@
     
 <div class="contents" id="myform">
        
-        <form th:action="@{/category/categoryList}" th:method="post" th:object="${categoryList}" class="login_form">
+        <form th:method="post" th:action="@{/saveMembership}" th:object="${member}" class="login_form">
             <div>
                 <h1 class="login_title">
                     <span>Membership Registration</span>
@@ -27,26 +27,35 @@
 
                     <div>
                         <label  class="loginlabel">Name</label>
-                        <input type="text" id="fname" placeholder="Enter your Fullname" th:field="*{name}" th:value="${categoryList.name}" required class="login-inputs">
+                        <input th:field="*{name}"  type="text" id="fname" placeholder="Enter your Fullname" required class="login-inputs">
                     </div>
                     <div>
                         <label  class="loginlabel">Email</label>
-                        <input type="email" id="email" placeholder="Enter your email" required class="login-inputs">
+                        <input th:field="*{email}"  type="email" id="email" placeholder="Enter your email" required class="login-inputs">
                     </div>
                     <div class="apply">
                         <label >Applying for :</label>
-                        <select class="select" name="category" id="list" >
-                            <option th:each="category:${categoryList}"
-                                    th:text="${category.categories}"
-                                    th:field="*{category}" th:value="${categoryList.category}"/>
+                        <select class="select" name="category" id="list" th:field="*{category}"  >
+<!--                            <option th:each="category:${categoryList}"-->
+<!--                                    th:text="${category.categories}"-->
+<!--                                    th:field="*{category}" th:value="${categoryList.category}"/>-->
+                            <option class="opt" value="Weightlifting" >
+                                Weightlifting
+                            </option>
+                            <option class="opt" value="Boxing" >
+                                Boxing
+                            </option>
+                            <option class="opt" value="Calisthenics" >
+                                Calisthenics
+                            </option>
                         </select>
                     </div>
-                    <div class="period">
-                        <input type="checkbox" class="checkboxes" name="p" id="1" onclick="fn()" />
+                    <div class="period" >
+                        <input  type="checkbox" class="checkboxes" th:field="*{duration}" th:value="${'1 month'}"  id="1" onclick="fn()" />
                         <label>1 month</label>
-                        <input type="checkbox" class="checkboxes" name="p" id="6" onclick="fn()" />
+                        <input type="checkbox" class="checkboxes" th:field="*{duration}" th:value="${'6 months'}"  id="6" onclick="fn()" />
                         <label>6 month</label>
-                        <input type="checkbox" class="checkboxes" name="p" id="12" onclick="fn()"/>
+                        <input type="checkbox" class="checkboxes" th:field="*{duration}" th:value="${'12 months'}" id="12" onclick="fn()"/>
                         <label>12 month</label>
                     </div>
                 </div>
@@ -54,8 +63,8 @@
             </div>
             <div>
                 <div class="login_buttons">
-                    <button class="login-button" onclick="print()">Register</button>
-                    <button class="login-button" onclick="openForm()">Cancel</button>
+                    <button class="login-button" type="submit" th:onclick="print()">Register</button>
+                    <button class="login-button" th:onclick="openForm()" type="reset">Cancel</button>
                 </div>
             </div>
         </form>
@@ -70,7 +79,7 @@
             <ul >
                 <li>
                     <button class="items">
-                       <a href="">Home</a> 
+                       <a th:href="@{/dashboard}">Home</a>
                     </button>
                 </li>
                  <li >
@@ -83,15 +92,11 @@
                         <a href="">Package&Plans</a>
                     </button>
                 </li>
-                <li>
-                    <button class="items">
-                        <a href="">Contacts</a>
-                    </button>
-                </li> 
+
             </ul>
             <div class="rbtn">
                 <button onclick="registerbtn()" class="Register-btn">
-                    <a href="../Html_daily/Login.html">Register Now</a> 
+                    <a th:href="@{/profile}">Profile</a>
                 </button>
             </div>
             <i class="ri-menu-line"></i>
@@ -107,7 +112,6 @@
                 <div class="area">
                 <div class="img-sec">
                     <span class="ss"></span>
-                    <!-- <button class="assign">Join Us</button> -->
                 </div>
                 <div >
                     <p>Learn and master the art of weightlifting with professional trainers.<br>Give us a chance and find out what your body is capable of.</p>   
@@ -140,7 +144,6 @@
                 </div>
                 <div class="but" >
                     <button class="assign" id="ass" onclick="openForm()">Join Us</button>
-                    <button class="option" id="myButton"onclick="optionbtn()">See other options ➡</button>
                 </div>
             </div>
     
