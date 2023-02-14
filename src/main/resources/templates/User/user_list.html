@@ -11,8 +11,8 @@
     <p th:if="${successMsg}" th:text="${successMsg}"></p>
     <p th:if="${deleteMsg}" th:text="${deleteMsg}"></p>
     <tr th:each="user:${userList}">
-        <td th:text="${user.fullName}"></td>
-        <td th:text="${user.email}"></td>
+        <td th:text="${user.signup_id}"></td>
+        <td th:text="${user.membership_id}"></td>
 
         <td>
             <a class="edit" th:href="@{~/user/edit/}+${user.id}">Edit</a> |
