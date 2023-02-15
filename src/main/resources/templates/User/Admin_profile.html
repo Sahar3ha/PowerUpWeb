@@ -47,12 +47,25 @@
 
     <div class="admin-body">
         <span>Admin</span>
-        <form class="admin" action="" method="get">
-            <div>
-                <button class="adminbtn">Members</button>
-                <button class="adminbtn">Add category</button>
-            </div>
-        </form>
+        <table>
+            <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Category</th>
+                <th>Duration</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user:${members}">
+                <td th:text="${user.user_id.fullName}">
+                <td th:text="${user.user_id.email}">
+                <td th:text="${user.category}"></td>
+                <td th:text="${user.duration}"></td>
+            </tr>
+
+        </table>
     </div>
     
 </body>

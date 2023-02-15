@@ -30,14 +30,7 @@ public class LoginController {
         }
         return "redirect:/homepage";
     }
-//    @PostMapping("/login")
-//    public String login(@RequestParam String username,
-//                        @RequestParam String password,
-//                        HttpSession session) {
-//        session.setAttribute("username", username);
-//
-//        return "redirect:/home";
-//    }
+
     @GetMapping("/home")
     public String logout(Authentication authentication){
         if (authentication.isAuthenticated()) {
@@ -52,6 +45,16 @@ public class LoginController {
         SignUp user = signUpService.fetchByEmail(email);
         model.addAttribute("user",user);
         return "User/gg";
+    }
+
+    @GetMapping("/nav")
+    public String nav(Model model,Principal principal){
+        String email = principal.getName();
+        SignUp user = signUpService.fetchByEmail(email);
+        model.addAttribute("nav",user);
+        return "User/profile";
+
+
     }
 
 

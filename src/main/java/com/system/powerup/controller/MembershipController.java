@@ -1,9 +1,12 @@
 package com.system.powerup.controller;
 
+import com.system.powerup.Entity.Admin;
 import com.system.powerup.Entity.Membership;
 import com.system.powerup.Entity.SignUp;
+import com.system.powerup.pojo.AdminPojo;
 import com.system.powerup.pojo.MembershipPojo;
 import com.system.powerup.pojo.SignUpPojo;
+import com.system.powerup.services.AdminService;
 import com.system.powerup.services.MembershipService;
 import com.system.powerup.services.SignUpService;
 import jakarta.validation.Valid;
@@ -25,6 +28,7 @@ import java.util.List;
 @RequestMapping()
 public class MembershipController {
     private final MembershipService membershipService;
+    private final AdminService adminService;
     private final SignUpService signUpService;
 //    static List<String> categoryList= null;
 //
@@ -58,41 +62,30 @@ public class MembershipController {
 //        return "User/gg";
 //    }
 
-    @GetMapping("/weightlifting/{id}")
-    public  String getWeightlifting(@PathVariable("id") Integer id, Model model){
+    @GetMapping("/membership")
+    public  String getWeightlifting(Model model,Principal principal){
+
+        model.addAttribute("tab1Active", true);
+        model.addAttribute("tab2Active", false);
+        model.addAttribute("tab3Active", false);
+        String email = principal.getName();
+        SignUp user = signUpService.fetchByEmail(email);
+
+        model.addAttribute("userdata",signUpService.fetchById(user.getId()));
+
+        List<Admin> admins = adminService.fetchAll();
 
 
-        model.addAttribute("userdata",signUpService.fetchById(id));
+        model.addAttribute("priceTable", admins.stream().map(admin ->
+                Admin.builder()
+                        .id(admin.getId())
+                        .duration(admin.getDuration())
+                        .price(admin.getPrice())
+                        .build()
 
-//        SignUp user = signUpService.fetchById(id);
-//        model.addAttribute("signup", new SignUpPojo(user));
-//        model.addAttribute("signups", user);
+        ));
         model.addAttribute("member", new MembershipPojo());
         return "User/weightlifting";
-    }
-    @GetMapping("/boxing/{id}")
-    public  String getBoxing(@PathVariable("id") Integer id, Model model){
-
-
-        model.addAttribute("userdata",signUpService.fetchById(id));
-
-//        SignUp user = signUpService.fetchById(id);
-//        model.addAttribute("signup", new SignUpPojo(user));
-//        model.addAttribute("signups", user);
-        model.addAttribute("member", new MembershipPojo());
-        return "User/boxing";
-    }
-    @GetMapping("/calisthenics/{id}")
-    public  String getCalisthenics(@PathVariable("id") Integer id, Model model){
-
-
-        model.addAttribute("userdata",signUpService.fetchById(id));
-
-//        SignUp user = signUpService.fetchById(id);
-//        model.addAttribute("signup", new SignUpPojo(user));
-//        model.addAttribute("signups", user);
-        model.addAttribute("member", new MembershipPojo());
-        return "User/calisthenics";
     }
 
 

@@ -2,13 +2,10 @@ package com.system.powerup.Entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
@@ -36,4 +33,7 @@ public class Membership {
     private SignUp user_id;
 
 
+    public SignUp setSignUp(SignUp signUp) {
+        return signUp;
+    }
 }

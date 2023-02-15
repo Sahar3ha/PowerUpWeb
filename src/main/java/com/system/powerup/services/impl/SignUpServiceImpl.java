@@ -20,7 +20,7 @@ public class SignUpServiceImpl implements SignUpService {
 
     private final SignUpRepo signUpRepo;
     @Override
-    public void saveUser(SignUpPojo signUpPojo) throws IOException {
+    public SignUpPojo saveUser(SignUpPojo signUpPojo) throws IOException {
         SignUp signUp;
         if (signUpPojo.getId() != null) {
             signUp = signUpRepo.findById(signUpPojo.getId()).orElseThrow(() -> new RuntimeException("Not Found"));
@@ -32,12 +32,14 @@ public class SignUpServiceImpl implements SignUpService {
         signUp.setPassword(PasswordEncoderUtil.getInstance().encode(signUpPojo.getPassword()));
 
         signUpRepo.save(signUp);
+        return new SignUpPojo(signUp);
+
 
     }
     @Override
     public SignUpPojo updateUser(SignUpPojo signUpPojo) throws IOException {
         SignUp signUp=new SignUp();
-//
+
         if (signUpPojo.getId() != null) {
             signUp = signUpRepo.findById(signUpPojo.getId()).orElseThrow(() -> new RuntimeException("Not Found"));
         } else {

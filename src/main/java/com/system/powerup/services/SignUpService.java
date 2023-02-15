@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public interface SignUpService {
-    void saveUser(SignUpPojo signUpPojo)throws IOException;
+    SignUpPojo saveUser(SignUpPojo signUpPojo)throws IOException;
     SignUpPojo updateUser(SignUpPojo signUpPojo)throws IOException;
     SignUp fetchByEmail(String email);
 

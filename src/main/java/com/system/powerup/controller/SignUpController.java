@@ -51,57 +51,22 @@ public class SignUpController {
         signUpService.updateUser(signUpPojo);
         return "redirect:/homepage";
     }
-//    @PostMapping("/update")
-//    public String updateMember(@Valid MembershipPojo membershipPojo )throws IOException {
-//        membershipService.saveMember(membershipPojo);
-//        return "redirect:/homepage";
-//    }
-//    @GetMapping("/list")
-//    public String getUserList(Model model){
-//        List<SignUp> sign = signUpService.fetchAll();
-//        model.addAttribute("userList", sign);
-//
-//        return "User/profile";
-//    }
-//@GetMapping("/list")
-//public String getUSerList(Model model) {
-//    List<SignUp> users = signUpService.fetchAll();
-//
-//
-//    model.addAttribute("userList", users.stream().map(user ->
-//            SignUp.builder()
-//                    .id(user.getId())
-//                    .email(user.getEmail())
-//                    .fullName(user.getFullName())
-//                    .build()
-//
-//    ));
-//
-////        model.addAttribute("UPLOAD_DIRECTORY", "/" + UPLOAD_DIRECTORY);
-//
-//    return "User/user_list";
-//}
+    @PostMapping("/updateMember")
+    public String updateMember(@Valid MembershipPojo membershipPojo )throws IOException {
+        membershipService.saveMember(membershipPojo);
+        return "redirect:/homepage";
+    }
 
-    //for single
-//    @GetMapping("/list")
-//    public String getUserList(Model model, Principal principal) {
-//        String email = principal.getName();
-//        SignUp user = signUpService.fetchByEmail(email);
-//
-//        model.addAttribute("userList", user);
-//
-//        return "User/user_list";
-//    }
+
+
     @GetMapping("/list/{id}")
-    public String getUserDetails(@PathVariable("id") Integer id,Model model,Principal principal,MembershipPojo membershipPojo) {
-//        String email = principal.getName();
-//        SignUp user = signUpService.fetchByEmail(email);
-//        String email =principal.getName();
+    public String getUserDetails(@PathVariable("id") Integer id,Model model) {
         SignUp signUp =signUpService.fetchById(id);
         Membership membership =membershipService.fetchById(id);
 
-        model.addAttribute("member",new MembershipPojo(membership));
-        model.addAttribute("update",new SignUpPojo(signUp));
+
+        model.addAttribute("memberUpdate",new MembershipPojo(membership));
+        model.addAttribute("update", new SignUpPojo(signUp));
 
         model.addAttribute("userList",signUpService.fetchById(id));
         model.addAttribute("member", membershipService.fetchById(id));
@@ -113,37 +78,13 @@ public class SignUpController {
         return "User/profile";
     }
 
-    @PostMapping ("/edit")
-    public String editUser(SignUpPojo signUpPojo) throws IOException {
-
-        signUpService.saveUser(signUpPojo);
-
-
-        return "redirect:/weightlifting";
-    }
     @GetMapping("/{id}")
-    public String deleteUser(@PathVariable ("id") Integer id,Principal principal){
-        SignUp signUp =signUpService.fetchByEmail(principal.getName());
-//        membershipService.deleteById(id);
+    public String deleteUser(@PathVariable ("id") Integer id){
         signUpService.deleteById(id);
-        membershipService.deleteById(id);
+        membershipService.deleteAllBy(id);
         return "redirect:/signup";
     }
 
-//    @GetMapping("/edit/{id}")
-//    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-//        SignUp signUp = signUpService.fetchById(id)
-//                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-//        model.addAttribute("user", signUp);
-//        return "User/weightlifting";
-//    }
-//
-//    @PostMapping("/update/{id}")
-//    public String updateUser(@PathVariable("id") long id, @ModelAttribute SignUp signUp, Model model) {
-//        signUpRepo.save(signUp);
-//        model.addAttribute("users", signUpRepo.findAll());
-//        return "User/gg";
-//    }
 
 
 }

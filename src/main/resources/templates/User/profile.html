@@ -16,22 +16,22 @@
             <ul >
                 <li>
                     <button class="items">
-                       <a href="">Home</a>
+                       <a th:href="@{/homepage}">Home</a>
                     </button>
                 </li>
                  <li >
                     <button class="items">
-                        <a href="">Contacts</a>
+                        <a th:href="@{/homepage}">Contacts</a>
                     </button>
                 </li>
                 <li>
                     <button class="items">
-                        <a href="#package">Package&Plans</a>
+                        <a th:href="@{/homepage}">Package&Plans</a>
                     </button>
                 </li>
                 <li>
                     <button class="items">
-                        <a href="">About Us</a>
+                        <a th:href="@{/homepage}">About Us</a>
                     </button>
                 </li>
             </ul>
@@ -47,27 +47,28 @@
     <div class="profile-body">
         <div class="tab">
             <button class="tablinks" th:class="${tab1Active ? 'active' : ''}" onclick="openTab(event, 'Tab1')">Profile</button>
-            <button class="tablinks" th:class="${tab2Active ? 'active' : ''}"onclick="openTab(event, 'Tab2')">Membership</button>
+            <button class="tablinks" th:class="${tab2Active ? 'active' : ''}" onclick="openTab(event, 'Tab2')">Membership</button>
         </div>
 
         <div id="Tab1" class="tabcontent" th:style="${tab1Active ? '' : 'display:none;'}">
             <h3>Profile</h3>
-            <form class="profile" th:action="@{/signup/update}" th:object="${update}" method="get">
-                <input hidden="" th:value="${userList.id}" th:field="*{id}" name="id">
+            <form class="profile" th:action="@{/signup/update}" th:object="${update}" method="post">
+                <input  th:value="${userList.id}" th:field="*{id}" name="id">
+<!--                <input hidden="" th:value="${member.user_id}">-->
                 <div class="info">
                     <div>
                         <label  class="plabel">Full Name</label>
-                        <input type="text" th:value="${userList.fullName}" th:field="*{fullName}"   required class="pinputs">
+                        <input type="text" th:value="${userList.fullName}" th:field="*{fullName}" name="fullName"  required class="pinputs">
                     </div>
                     <div>
                         <label class="plabel">Email</label>
-                        <input type="email" th:value="${userList.email}" th:field="*{email}"  required class="pinputs">
+                        <input type="email" th:value="${userList.email}" th:field="*{email}" name="email"  required class="pinputs">
                     </div>
 
                 </div>
                 <div>
                     <button class="profilebtn">Update</button>
-                    <button class="profilebtn">Delete</button>
+                    <button type="reset" class="profilebtn">Delete</button>
 
                 </div>
             </form>
@@ -75,21 +76,22 @@
 
         <div id="Tab2" class="tabcontent" th:style="${tab2Active ? '' : 'display:none;'}">
             <h3>Membership</h3>
-            <form class="profile" th:action="@{/signup/update}" th:object="${member}" method="get">
-                <input hidden="" th:value="${member.user_id}" >
+            <form class="profile" th:action="@{/signup/updateMember}" th:object="${memberUpdate}" method="post">
+                <input  th:value="${member.id}" name="id" >
+                <input  th:value="${member.user_id.id}"  name="user_id">
                 <div class="info">
                     <div>
                         <label class="plabel">Membership for</label>
-                        <input type="text" th:value="${member.category}" th:field="*{category}" required class="pinputs">
+                        <input type="text" th:value="${member.category}" th:field="*{category}" name="category" required class="pinputs">
                     </div>
                     <div>
                         <label class="plabel">Duration</label>
-                        <input type="text" th:value="${member.duration}" th:field="*{duration}" required class="pinputs">
+                        <input type="text" th:value="${member.duration}" th:field="*{duration}" name="duration"  required class="pinputs">
                     </div>
                 </div>
                 <div>
                     <button class="profilebtn">Update</button>
-                    <button class="profilebtn">Delete</button>
+                    <button type="reset" class="profilebtn"><a th:href="@{~/signup/}+${member.user_id.id}">Delete</a>></button>
 
                 </div>
             </form>
