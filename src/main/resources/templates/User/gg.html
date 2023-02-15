@@ -38,7 +38,7 @@
           </ul>
           <div class="rbtn">
               <button type="button"  class="Register-btn">
-                  <a  th:href="@{/signup/list}">Profile</a>
+                  <a  th:href="@{/signup/list/}+${user.id}">Profile</a>
               </button>
 
           </div>
@@ -77,7 +77,7 @@
         <div id="package" class="programs">
             <span class="program_span">Our Programs</span>
                 <div class="content">
-                <a href="weightlifting.html">    
+                <a th:href="@{/membership}">
                 <div id="weightlifting" class="weightlifting">
                     <img src="../Css/assets/pexels-victor-freitas-841130.jpg" alt="404" class="divimg" srcset="">
                     <span>Weightlifting</span>
@@ -85,7 +85,7 @@
                         of lifting with professional trainers</p> 
                 </div>
                 </a>
-                <a href="boxing.html">
+                <a th:href="@{/membership}">
                 <div id="boxing" class="boxing">
                     <img src="../Css/assets/chris-kendall-sJ6az6-T1u8-unsplash.jpg" alt="" class="divimg" srcset="">
                     <span>Boxing</span>
@@ -93,7 +93,7 @@
                         with our high-energy boxing classes.</p> 
                 </div>
                 </a>
-                <a href="calisthenics.html">
+                <a th:href="@{/membership}">
                 <div id="calisthenics" class="calisthenics">
                     <img src="../Css/assets/janapan_top.jfif" alt="" class="divimg" srcset="">
                     <span>Calisthenics</span>

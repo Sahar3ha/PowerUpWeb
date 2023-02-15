@@ -34,6 +34,23 @@ public class SignUpServiceImpl implements SignUpService {
         signUpRepo.save(signUp);
         return new SignUpPojo(signUp);
 
+
+    }
+    @Override
+    public SignUpPojo updateUser(SignUpPojo signUpPojo) throws IOException {
+        SignUp signUp=new SignUp();
+
+        if (signUpPojo.getId() != null) {
+            signUp = signUpRepo.findById(signUpPojo.getId()).orElseThrow(() -> new RuntimeException("Not Found"));
+        } else {
+            signUp = new SignUp();
+        }
+        signUp.setEmail(signUpPojo.getEmail());
+        signUp.setFullName(signUpPojo.getFullName());
+
+        signUpRepo.save(signUp);
+        return new SignUpPojo(signUp);
+
     }
 
 

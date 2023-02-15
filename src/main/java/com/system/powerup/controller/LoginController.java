@@ -12,10 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping()
 public class LoginController {
+    private final SignUpService signUpService;
 
     @GetMapping("/login")
     public String showLoginForm(Model model) {
@@ -24,16 +28,9 @@ public class LoginController {
             model.addAttribute("signup", new SignUpPojo());
             return "User/Login";
         }
-        return "redirect:/signup/list";
+        return "redirect:/homepage";
     }
-//    @PostMapping("/login")
-//    public String login(@RequestParam String username,
-//                        @RequestParam String password,
-//                        HttpSession session) {
-//        session.setAttribute("username", username);
-//
-//        return "redirect:/home";
-//    }
+
     @GetMapping("/home")
     public String logout(Authentication authentication){
         if (authentication.isAuthenticated()) {
@@ -43,8 +40,23 @@ public class LoginController {
     }
 
     @GetMapping("/homepage")
-    public  String getHome(){
+    public  String getHome(Model model, Principal principal){
+        String email = principal.getName();
+        SignUp user = signUpService.fetchByEmail(email);
+        model.addAttribute("user",user);
         return "User/gg";
     }
+
+    @GetMapping("/nav")
+    public String nav(Model model,Principal principal){
+        String email = principal.getName();
+        SignUp user = signUpService.fetchByEmail(email);
+        model.addAttribute("nav",user);
+        return "User/profile";
+
+
+    }
+
+
 
 }

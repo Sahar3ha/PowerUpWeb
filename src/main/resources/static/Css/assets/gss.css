@@ -507,7 +507,7 @@ footer .bottom a span{
     justify-content: center;
     padding-top: 3%;
     padding-bottom: 2%;
-    background-color: black;
+    /*background-color: black;*/
 }
 .about{
     justify-content: center;
@@ -559,108 +559,45 @@ footer .bottom a span{
     }
 } */
 
-/* row coffee build section */
-/* .coffee-build {
-    margin-bottom: 60px;
-  }
-  .section-heading{
-    margin-bottom: 50px;
-  }
-  
-  .text-center, .text-center>* {
-    text-align: center;
-  }
-  
-  .section-main-heading {
-    color: #514242;
-    ;
-  }
-  
-  .section-heading h2 {
-    line-height: 1em;
-    font-family: cursive;
-    font-weight: 700;
-    font-size: 45px;
-  }
-  
-  .section-grid-banner {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 170px;
-    margin-right: 170px;
-  }
-  
-  
-  .section-support-blocks {
-    display: grid;
-    grid-template-columns: 60px 1fr;
-    width: 350px;
-  }
-  
-  .section-support-left-blocks {
-    display: grid;
-    grid-template-columns: 1fr 60px;
-    width: 350px;
-  }
-  
-  .section-support-content,
-  .section-support-right-content {
-    height: 195px;
-  }
-  
-  
-  .section-support-right-content {
-    margin-left: 40px;
-  }
-  
-  .section-support-content {
-    margin-right: 40px;
-    text-align: right;
-  }
-  
-  
-  .section-support-content .section-support-heading,
-  .section-support-right-content .section-support-heading {
-    font-size: 26px;
-    font-family: cursive;
-    font-weight: bolder;
-    padding-bottom: 10px;
-    color: #c09056;
-  
-  }
-  
-  .section-support-icon-image img,
-  .section-support-right-icon-image img {
-    width: 70px;
-    height: 70px;
-  }
-  
-  
-  .section-support-right-content .section-support-right-icon-image {
-    margin-right: 35px;
-  }
-  
-  
-  
-  .section-support-content .section-support-description,
-  .section-support-right-content .section-support-description {
-    font-size: 18px;
-    line-height: 1.5em;
-  }
-  
-  .section-grid-image {
-    margin: 0;
-    vertical-align: middle;
-    margin-top: 13px;
-    margin-left: 25px;
-  }
-  
-  .section-grid-image:hover {
-    transform: scale(1.1);
-  } */
 
 .img{
     width: 426px;
     height: 578px;
     /* object-fit: cover; */
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+    background-color: dimgrey;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
 }

@@ -39,6 +39,7 @@ function optionbtn() {
 
 
 
+
 function fn(){
     let checkboxes = document.querySelectorAll("input[type='checkbox']");
 

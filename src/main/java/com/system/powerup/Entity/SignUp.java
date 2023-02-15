@@ -1,13 +1,15 @@
 package com.system.powerup.Entity;
 
 import jakarta.persistence.*;
-import jdk.jshell.Snippet;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;
+import java.util.List;
+
 @Builder
 //@Data
 @Getter
@@ -15,9 +17,10 @@ import java.util.Collection;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "signup", uniqueConstraints = {
-        @UniqueConstraint(name = "UNIQUE_user_email", columnNames = "email")
-})
+@DynamicInsert
+@DynamicUpdate
+@Table(name = "signup" )
+
 public class SignUp implements UserDetails {
     @Id
     @SequenceGenerator(name = "pms_user_seq_gen", sequenceName = "pms_user_id_seq", allocationSize = 1)
@@ -27,12 +30,23 @@ public class SignUp implements UserDetails {
     @Column(nullable = false)
     private String email;
 
-
     private String fullName;
 
     @Column(nullable = true)
     private String password;
 
+
+//    @OneToMany(cascade = CascadeType.ALL)
+////    @JoinColumn(name = "mId")
+//    private List<Membership> childEntities;
+
+
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "category", referencedColumnName = "category")
+//    private Membership category;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "duration" , referencedColumnName = "duration")
+//    private Membership duration;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

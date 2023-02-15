@@ -13,4 +13,7 @@ public interface SignUpRepo extends JpaRepository<SignUp, Integer> {
     @Query(value = "SELECT * FROM signup WHERE email = ?1", nativeQuery = true)
     Optional<SignUp> findByEmail(String email);
 
+    @Query(value = "UPDATE * FROM signup WHERE email = ?1", nativeQuery = true)
+    Optional<SignUp> UpdateByEmail(String email);
+
 }

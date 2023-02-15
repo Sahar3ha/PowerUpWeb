@@ -13,17 +13,16 @@ import lombok.Setter;
 @AllArgsConstructor
 public class MembershipPojo {
     private Integer id;
-    private String name;
     private String category;
     private String duration;
-    private String email;
+    private SignUp user_id;
 
 
     public MembershipPojo(Membership membership) {
         this.id= membership.getId();
-        this.name= membership.getName();
         this.category= membership.getCategory();
-        this.email=membership.getEmail();
         this.duration=membership.getDuration();
+        this.user_id= SignUp.builder().build();
+//        signUp.setCategory(membership);
     }
 }
