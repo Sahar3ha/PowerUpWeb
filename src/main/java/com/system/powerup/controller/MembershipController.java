@@ -30,37 +30,8 @@ public class MembershipController {
     private final MembershipService membershipService;
     private final AdminService adminService;
     private final SignUpService signUpService;
-//    static List<String> categoryList= null;
-//
-//    static {
-//        categoryList = new ArrayList<>();
-//        categoryList.add("weightlifting");
-//        categoryList.add("boxing");
-//        categoryList.add("calisthenics");
-//    }
-//    @GetMapping("/category")
-//    public String load(Model model){
-//        model.addAttribute("categoryList",new MembershipPojo());
-//        return "User/weightlifting";
-//    }
 
-//    @PostMapping("/category")
-//    public String category(Model model){
-//        model.addAttribute("categories",categoryList);
-//        return "User/weightlifting";
-//    }
-
-
-
-//    @PostMapping("/category")
-//    public String membershipSubmission(@Valid MembershipPojo membershipPojo) {
-//        membershipService.saveMember(membershipPojo);
-//        return "redirect:/category/new";
-//    }
-//    @GetMapping("/new")
-//    public  String getHome(){
-//        return "User/gg";
-//    }
+    List<String> categories = Arrays.asList("Weightlifting", "Boxing", "Calisthenics");
 
     @GetMapping("/membership")
     public  String getWeightlifting(Model model,Principal principal){
@@ -70,52 +41,15 @@ public class MembershipController {
         model.addAttribute("tab3Active", false);
         String email = principal.getName();
         SignUp user = signUpService.fetchByEmail(email);
-
         model.addAttribute("userdata",signUpService.fetchById(user.getId()));
 
         List<Admin> admins = adminService.fetchAll();
-
-
-        model.addAttribute("priceTable", admins.stream().map(admin ->
-                Admin.builder()
-                        .id(admin.getId())
-                        .duration(admin.getDuration())
-                        .price(admin.getPrice())
-                        .build()
-
-        ));
+        model.addAttribute("priceTable", admins);
+        List<String> categories = Arrays.asList("Weightlifting", "Boxing", "Calisthenics");
+        model.addAttribute("categories",categories);
         model.addAttribute("member", new MembershipPojo());
         return "User/weightlifting";
     }
-
-
-//    @PostMapping("/updateprofile")
-//    public String updateRegister(@Valid SignUpPojo userPojo){
-//        signUpService.saveUser(userPojo);
-//
-//        return "redirect:/user/index";}
-
-//    @GetMapping("/weightlifting/{id}")
-//    public String getWeightlifting(@PathVariable("id") Integer id, Model model, Principal principal){
-//        SignUp signUp = signUpService.fetchById(id);
-//        model.addAttribute("uId",new SignUpPojo(signUp));
-//        model.addAttribute("member", new MembershipPojo());
-//        return "User/weightlifting";
-//    }
-
-    @GetMapping("/boxing")
-    public String getBoxing(Model model){
-        model.addAttribute("member", new MembershipPojo());
-        return "User/boxing";
-    }
-
-    @GetMapping("/calisthenics")
-    public String getCalisthenics(Model model){
-        model.addAttribute("member", new MembershipPojo());
-        return "User/calisthenics";
-    }
-
-
 
     @PostMapping("/saveMembership")
     public String saveUser(@Valid MembershipPojo membershipPojo)throws IOException {

@@ -93,8 +93,8 @@
         <i class="ri-menu-line"></i>
     </nav>
 </header>
-<form class="price-form" th:action="@{/savePrice}" th:object="${price}" th:method="post">
-
+<form class="price-form" th:action="@{/admin/savePrice}" th:object="${price}" th:method="post">
+    <input hidden name="id" th:field="*{id}" th:value="${price.id}">
     <div class="form-group">
         <label for="duration">Duration</label>
         <input type="text" class="form-control" id="duration" name="duration" th:field="*{duration}" th:value="${price.duration}">
@@ -104,7 +104,7 @@
         <input type="text" class="form-control" id="price" name="price" th:field="*{price}" th:value="${price.price}">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-    <a href="/price" class="btn btn-secondary"><button type="button">Update</button></a>
+    <a th:href="@{/admin/price}" class="btn btn-secondary"><button type="button">Update</button></a>
 </form>
 
 

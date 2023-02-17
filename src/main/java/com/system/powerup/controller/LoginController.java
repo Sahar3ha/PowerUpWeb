@@ -7,12 +7,14 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -40,22 +42,22 @@ public class LoginController {
     }
 
     @GetMapping("/homepage")
-    public  String getHome(Model model, Principal principal){
+    public  String getHome(Model model, Principal principal,Authentication authentication){
+        if (authentication!=null){
+            Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+            for (GrantedAuthority grantedAuthority : authorities) {
+                if (grantedAuthority.getAuthority().equals("Admin")) {
+                    return "redirect:/admin/list";
+                }
+            }
+        }
         String email = principal.getName();
         SignUp user = signUpService.fetchByEmail(email);
         model.addAttribute("user",user);
         return "User/gg";
     }
 
-    @GetMapping("/nav")
-    public String nav(Model model,Principal principal){
-        String email = principal.getName();
-        SignUp user = signUpService.fetchByEmail(email);
-        model.addAttribute("nav",user);
-        return "User/profile";
 
-
-    }
 
 
 

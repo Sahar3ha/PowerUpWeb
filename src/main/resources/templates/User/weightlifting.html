@@ -65,29 +65,13 @@
             <div> 
                 <div class="logininputs">
 
-<!--                    <div>-->
-<!--                        <label  class="loginlabel">Name</label>-->
-<!--                        <input th:field="*{name}"  type="text" id="fname" placeholder="Enter your Fullname" required class="login-inputs">-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <label  class="loginlabel">Email</label>-->
-<!--                        <input th:field="*{email}"  type="email" id="email" placeholder="Enter your email" required class="login-inputs">-->
-<!--                    </div>-->
                     <div class="apply">
                         <label >Applying for :</label>
-                        <select class="select" name="category" id="list" th:field="*{category}"  >
-<!--                            <option th:each="category:${categoryList}"-->
-<!--                                    th:text="${category.categories}"-->
-<!--                                    th:field="*{category}" th:value="${categoryList.category}"/>-->
-                            <option class="opt" value="Weightlifting" >
-                                Weightlifting
-                            </option>
-                            <option class="opt" value="Boxing" >
-                                Boxing
-                            </option>
-                            <option class="opt" value="Calisthenics" >
-                                Calisthenics
-                            </option>
+                        <select th:field="*{category}" name="category" required class="pinputs">
+                            <option th:value="${categories}" selected>Select Category</option>
+                            <th:block th:each="cat : ${categories}">
+                                <option th:value="${cat}" th:text="${cat}"></option>
+                            </th:block>
                         </select>
                     </div>
                     <div class="period" >
@@ -163,7 +147,6 @@
                         <div class="area">
                             <div class="img-sec">
                                 <span class="ss"></span>
-                                <!-- <button class="assign">Join Us</button> -->
                             </div>
                             <div >
                                 <p>Learn and master the art of weightlifting with professional trainers.<br>Give us a chance and find out what your body is capable of.</p>
@@ -193,7 +176,6 @@
                         </div>
                         <div class="but" >
                             <button class="assign" id="ass" onclick="openForm()">Join Us</button>
-                            <!-- <button class="option" id="myButton"onclick="optionbtn()">See other options ➡</button> -->
                         </div>
                     </div>
                 </div>
@@ -205,7 +187,6 @@
                         <div class="area">
                             <div class="img-sec-boxing">
                                 <span class="ss"></span>
-                                <!-- <button class="assign">Join Us</button> -->
                             </div>
                             <div >
                                 <p>Step into the ring and unleash your inner fighter
