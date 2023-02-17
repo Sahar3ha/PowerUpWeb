@@ -63,7 +63,7 @@ public class AdminController {
     @PostMapping("/savePrice")
     public String addPrice(@Valid AdminPojo adminPojo )throws IOException {
         adminService.save(adminPojo);
-        return "redirect:/admin/list";
+        return "redirect:/admin/price";
     }
 
     @GetMapping("/create")
@@ -75,7 +75,7 @@ public class AdminController {
     public String getPrice(@PathVariable("id") Integer id,Model model){
 //        Admin admin = adminService.fetchById(id);
         model.addAttribute("price",adminService.fetchById(id));
-        return "User/create";
+        return "redirect:/admin/create";
     }
 
 

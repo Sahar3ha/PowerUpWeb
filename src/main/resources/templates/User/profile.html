@@ -53,8 +53,7 @@
         <div id="Tab1" class="tabcontent" th:style="${tab1Active ? '' : 'display:none;'}">
             <h3>Profile</h3>
             <form class="profile" th:action="@{/signup/update}" th:object="${update}" method="post">
-                <input  th:value="${userList.id}" th:field="*{id}" name="id">
-<!--                <input hidden="" th:value="${member.user_id}">-->
+                <input hidden th:value="${userList.id}" th:field="*{id}" name="id">
                 <div class="info">
                     <div>
                         <label  class="plabel">Full Name</label>
@@ -77,8 +76,8 @@
         <div id="Tab2" class="tabcontent" th:style="${tab2Active ? '' : 'display:none;'}">
             <h3>Membership</h3>
             <form class="profile" th:action="@{/signup/updateMember}" th:object="${memberUpdate}" method="post">
-                <input  th:value="${member.id}" name="id" >
-                <input  th:value="${member.user_id.id}"  name="user_id">
+                <input hidden th:value="${member.id}" name="id">
+                <input hidden th:value="${member.user_id.id}"  name="user_id">
                 <div class="info">
                     <div>
                         <label class="plabel">Membership for</label>
@@ -91,7 +90,9 @@
                 </div>
                 <div>
                     <button class="profilebtn">Update</button>
-                    <button type="reset" class="profilebtn"><a th:href="@{~/signup/}+${member.user_id.id}">Delete</a>></button>
+                    <a th:href="@{~/signup/}+${member.user_id.id}">
+                    <button type="reset" class="profilebtn">Delete</button>
+                    </a>
 
                 </div>
             </form>

@@ -417,12 +417,20 @@ button{
 .apply{
     font-weight: 500;
 }
-.select{
-    border-radius:2rem ;
+select {
+    padding: 12px 20px;
     border: none;
-    padding: 4px;
-    font-weight: 600;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    font-size: 16px;
+    color: #555;
 }
+
+select option {
+    background-color: white;
+    color: #555;
+}
+
 
 .opt{
     font-weight: 600;

@@ -5,10 +5,12 @@ import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Builder
 //@Data
@@ -35,23 +37,25 @@ public class SignUp implements UserDetails {
     @Column(nullable = true)
     private String password;
 
-
-//    @OneToMany(cascade = CascadeType.ALL)
-////    @JoinColumn(name = "mId")
-//    private List<Membership> childEntities;
-
-
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "category", referencedColumnName = "category")
-//    private Membership category;
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "duration" , referencedColumnName = "duration")
-//    private Membership duration;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+            foreignKey = @ForeignKey(name = "FK_users_roles_userId"),
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseForeignKey = @ForeignKey(name = "FK_users_roles_roleId"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
+            uniqueConstraints = @UniqueConstraint(name = "UNIQUE_users_roles_userIdRoleId",
+                    columnNames = {"user_id", "role_id"})
+    )
+    private Collection<Role> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+//        return null;
     }
+
+
+
 
 
     @Override
