@@ -68,7 +68,6 @@
                 <div>
                     <button class="profilebtn">Update</button>
                     <button type="reset" class="profilebtn">Delete</button>
-
                 </div>
             </form>
         </div>
@@ -76,21 +75,24 @@
         <div id="Tab2" class="tabcontent" th:style="${tab2Active ? '' : 'display:none;'}">
             <h3>Membership</h3>
             <form class="profile" th:action="@{/signup/updateMember}" th:object="${memberUpdate}" method="post">
-                <input hidden th:value="${member.id}" name="id">
-                <input hidden th:value="${member.user_id.id}"  name="user_id">
+                <input hidden th:value="${members.id}" name="id">
+                <input hidden th:value="${members.user_id.id}"  name="user_id">
                 <div class="info">
                     <div>
                         <label class="plabel">Membership for</label>
-                        <input type="text" th:value="${member.category}" th:field="*{category}" name="category" required class="pinputs">
+                        <input type="text" th:if="${members.category != null}" th:value="${members.category}" th:field="*{category}" name="category" required class="pinputs">
+                        <input type="text" th:if="${members.category == null}" th:field="*{category}" th:value="${'Not yet resitered'}" name="category" required class="pinputs">
                     </div>
+
                     <div>
-                        <label class="plabel">Duration</label>
-                        <input type="text" th:value="${member.duration}" th:field="*{duration}" name="duration"  required class="pinputs">
+                        <label class="plabel">Membership for</label>
+                        <input type="text" th:if="${members.duration != null}" th:value="${members.duration}" th:field="*{duration}" name="duration" required class="pinputs">
+                        <input type="text" th:if="${members.duration == null}" th:field="*{duration}" th:value="${'Not yet resitered'}" name="duration" required class="pinputs">
                     </div>
                 </div>
                 <div>
                     <button class="profilebtn">Update</button>
-                    <a th:href="@{~/signup/}+${member.user_id.id}">
+                    <a th:href="@{~/signup/}+${members.user_id.id}">
                     <button type="reset" class="profilebtn">Delete</button>
                     </a>
 

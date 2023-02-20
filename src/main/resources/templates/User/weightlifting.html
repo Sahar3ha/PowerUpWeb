@@ -75,7 +75,7 @@
                         </select>
                     </div>
                     <div class="period" >
-                        <input  type="checkbox" class="checkboxes" th:field="*{duration}" th:value="${'1 month'}"  id="1" onclick="fn()" />
+                        <input  type="checkbox" class="checkboxes" th:field="*{duration}" th:value="${priceTable.}"  id="1" onclick="fn()" />
                         <label>1 month</label>
                         <input type="checkbox" class="checkboxes" th:field="*{duration}" th:value="${'6 months'}"  id="6" onclick="fn()" />
                         <label>6 month</label>
@@ -96,7 +96,7 @@
     
     
     
-        <div class="container" id="ass">
+        <div class="container" >
         <header>
         <nav>
             <h2 class="logo" > <a href=""> Power <span>Up</span></a></h2>

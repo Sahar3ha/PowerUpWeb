@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -37,12 +38,17 @@ public class SignUpController {
 
     @GetMapping("/signup")
     public String createUser(Model model){
+        model.addAttribute("mem",new MembershipPojo());
         model.addAttribute("signup", new SignUpPojo());
         return "User/signup";
     }
-    @PostMapping("/save")
+    @PostMapping("/save" )
     public String saveUser(@Valid SignUpPojo signUpPojo )throws IOException {
         signUpService.saveUser(signUpPojo);
+        Membership membership = new Membership();
+
+        membershipRepo.save(membership);
+
         return "redirect:/login";
     }
 
@@ -60,16 +66,16 @@ public class SignUpController {
 
 
     @GetMapping("/list/{id}")
-    public String getUserDetails(@PathVariable("id") Integer id,Model model) {
+    public String getUserDetails(@PathVariable("id") Integer id,Model model) throws ChangeSetPersister.NotFoundException {
         SignUp signUp =signUpService.fetchById(id);
         Membership membership =membershipService.fetchById(id);
 
 
-        model.addAttribute("memberUpdate",new MembershipPojo(membership));
+        model.addAttribute("memberUpdate",new MembershipPojo());
         model.addAttribute("update", new SignUpPojo(signUp));
 
         model.addAttribute("userList",signUpService.fetchById(id));
-        model.addAttribute("member", membershipService.fetchById(id));
+        model.addAttribute("members", membershipService.fetchById(id));
 
         model.addAttribute("tab1Active", true);
         model.addAttribute("tab2Active", false);

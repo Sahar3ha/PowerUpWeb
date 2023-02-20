@@ -22,6 +22,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -31,7 +32,7 @@ public class MembershipController {
     private final AdminService adminService;
     private final SignUpService signUpService;
 
-    List<String> categories = Arrays.asList("Weightlifting", "Boxing", "Calisthenics");
+
 
     @GetMapping("/membership")
     public  String getWeightlifting(Model model,Principal principal){
@@ -44,6 +45,7 @@ public class MembershipController {
         model.addAttribute("userdata",signUpService.fetchById(user.getId()));
 
         List<Admin> admins = adminService.fetchAll();
+
         model.addAttribute("priceTable", admins);
         List<String> categories = Arrays.asList("Weightlifting", "Boxing", "Calisthenics");
         model.addAttribute("categories",categories);
@@ -53,6 +55,7 @@ public class MembershipController {
 
     @PostMapping("/saveMembership")
     public String saveUser(@Valid MembershipPojo membershipPojo)throws IOException {
+
         membershipService.saveMember(membershipPojo);
         return "redirect:/homepage";
     }

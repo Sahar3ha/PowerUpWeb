@@ -38,7 +38,7 @@ public class LoginController {
         if (authentication.isAuthenticated()) {
             SecurityContextHolder.clearContext();
         }
-        return "User/gg";
+        return "User/Login";
     }
 
     @GetMapping("/homepage")
