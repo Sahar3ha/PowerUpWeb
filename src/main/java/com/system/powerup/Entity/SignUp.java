@@ -21,7 +21,9 @@ import java.util.stream.Collectors;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "signup" )
+@Table(name = "signup", uniqueConstraints = {
+        @UniqueConstraint(name = "UNIQUE_user_email", columnNames = "email")
+})
 
 public class SignUp implements UserDetails {
     @Id

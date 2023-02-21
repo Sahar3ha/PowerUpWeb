@@ -2,7 +2,8 @@ package com.system.powerup.services.impl;
 
 import com.system.powerup.Entity.Membership;
 import com.system.powerup.pojo.MembershipPojo;
-import com.system.powerup.pojo.SignUpPojo;
+import com.system.powerup.repo.AdminRepo;
+import com.system.powerup.repo.CategoryRepo;
 import com.system.powerup.repo.MembershipRepo;
 import com.system.powerup.repo.SignUpRepo;
 import com.system.powerup.services.MembershipService;
@@ -16,38 +17,42 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemebershipServiceImpl implements MembershipService {
     private final MembershipRepo membershipRepo;
+    private final SignUpRepo signUpRepo;
+    private final AdminRepo adminRepo;
+    private final CategoryRepo categoryRepo;
 
     @Override
-    public MembershipPojo saveMember(MembershipPojo membershipPojo)throws IOException {
-        Membership membership = new Membership();
+    public void saveMember(MembershipPojo membershipPojo){
+        Membership membership ;
         if (membershipPojo.getId() != null) {
             membership = membershipRepo.findById(membershipPojo.getId()).orElseThrow(() -> new RuntimeException("Not Found"));
         } else {
             membership = new Membership();
         }
-
         membership.setUser_id(membershipPojo.getUser_id());
-        membership.setId(membership.getId());
-        membership.setCategory(membershipPojo.getCategory());
-        membership.setDuration(membershipPojo.getDuration());
-
+        membership.setPrice_id(membershipPojo.getPrice_id());
+        membership.setCategory_id(membershipPojo.getCategory_id());
         membershipRepo.save(membership);
-        return new MembershipPojo(membership);
+    }
+
+
+
+    @Override
+    public void updateMember(MembershipPojo membershipPojo)throws IOException {
+        Membership membership =new Membership();
+        if (membershipPojo.getUser_id() != null) {
+            membership = membershipRepo.fetchById(membership.getUser_id().getId()).orElseThrow(() -> new RuntimeException("Not Found"));
+        } else {
+            membership = new Membership();
+        }
+        membership.setUser_id(membershipPojo.getUser_id());
+        membershipRepo.save(membership);
 
     }
 
     @Override
-    public MembershipPojo updateMember(MembershipPojo membershipPojo)throws IOException {
-        Membership membership = new Membership();
-        if (membershipPojo.getUser_id() != null) {
-            membership = membershipRepo.fetchById(membershipPojo.getUser_id().getId()).orElseThrow(() -> new RuntimeException("Not Found"));
-        } else {
-            membership = new Membership();
-        }
-        membership.setCategory(membershipPojo.getCategory());
-        membership.setDuration(membershipPojo.getDuration());
-        membershipRepo.save(membership);
-        return new MembershipPojo(membership);
+    public void deleteById(Integer id) {
+         membershipRepo.deleteById(id);
     }
 
     @Override

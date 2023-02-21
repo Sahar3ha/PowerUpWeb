@@ -36,8 +36,8 @@
                 </li>
             </ul>
             <div class="rbtn">
-                <button onclick="registerbtn()" class="Register-btn">
-                    <a href="/Signup.html">Register Now</a>
+                <button  class="Register-btn">
+                    <a th:href="@{/logout}">Logout</a>
                 </button>
             </div>
             <i class="ri-menu-line"></i>
@@ -67,7 +67,10 @@
                 </div>
                 <div>
                     <button class="profilebtn">Update</button>
-                    <button type="reset" class="profilebtn">Delete</button>
+
+                    <a th:href="@{~/signup/delete/}+${userList.id}">
+                        Delete
+                    </a>
                 </div>
             </form>
         </div>
@@ -77,24 +80,41 @@
             <form class="profile" th:action="@{/signup/updateMember}" th:object="${memberUpdate}" method="post">
                 <input hidden th:value="${members.id}" name="id">
                 <input hidden th:value="${members.user_id.id}"  name="user_id">
+
                 <div class="info">
                     <div>
                         <label class="plabel">Membership for</label>
-                        <input type="text" th:if="${members.category != null}" th:value="${members.category}" th:field="*{category}" name="category" required class="pinputs">
-                        <input type="text" th:if="${members.category == null}" th:field="*{category}" th:value="${'Not yet resitered'}" name="category" required class="pinputs">
+<!--                        <input type="text"  th:value="${members.category_id.category}"  name="category" required class="pinputs">-->
+                        <select th:field="*{category_id}" required class="pinputs">
+                            <option th:value="${members.category_id}" selected disabled> </option>
+                            <option th:each="cat : ${categories}"
+                                    th:value="${cat.id}"
+                                    th:text="${cat.category}"
+                                    th:selected="${cat.id == members.category_id}">
+                            </option>
+                        </select>
                     </div>
 
                     <div>
-                        <label class="plabel">Membership for</label>
-                        <input type="text" th:if="${members.duration != null}" th:value="${members.duration}" th:field="*{duration}" name="duration" required class="pinputs">
-                        <input type="text" th:if="${members.duration == null}" th:field="*{duration}" th:value="${'Not yet resitered'}" name="duration" required class="pinputs">
+                        <label class="plabel">Duration</label>
+<!--                        <input type="text"  th:value="${members.price_id.duration}"  th:field="*{price_id}" required class="pinputs">-->
+                        <select th:field="*{price_id}" required class="pinputs">
+                            <option th:value="${members.price_id}" selected disabled> </option>
+                            <option th:each="price : ${duration}"
+                                    th:value="${price.id}"
+                                    th:text="${price.duration}"
+                                    th:selected="${price.id == members.price_id}">
+                            </option>
+                        </select>
                     </div>
                 </div>
                 <div>
+
                     <button class="profilebtn">Update</button>
-                    <a th:href="@{~/signup/}+${members.user_id.id}">
-                    <button type="reset" class="profilebtn">Delete</button>
+                    <a th:href="@{~/signup/delete/}+${members.user_id}">
+                    Delete
                     </a>
+
 
                 </div>
             </form>

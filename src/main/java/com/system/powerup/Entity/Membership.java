@@ -25,7 +25,7 @@ public class Membership {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id",
             referencedColumnName = "id",
-            foreignKey = @ForeignKey(name = "FK_userId"))
+            foreignKey = @ForeignKey(name = "FK_categoryId"))
     private Category category_id;
 
 
@@ -41,12 +41,5 @@ public class Membership {
             foreignKey = @ForeignKey(name = "FK_priceId"))
     private Admin price_id;
 
-    public String Membership(String notRegisteredYet) {
-        return notRegisteredYet;
-    }
 
-
-    public SignUp setSignUp(SignUp signUp) {
-        return signUp;
-    }
 }

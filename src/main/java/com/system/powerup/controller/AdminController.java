@@ -1,10 +1,13 @@
 package com.system.powerup.controller;
 
 import com.system.powerup.Entity.Admin;
+import com.system.powerup.Entity.Category;
 import com.system.powerup.Entity.Membership;
+import com.system.powerup.Entity.SignUp;
 import com.system.powerup.pojo.AdminPojo;
 import com.system.powerup.pojo.SignUpPojo;
 import com.system.powerup.services.AdminService;
+import com.system.powerup.services.CategoryService;
 import com.system.powerup.services.MembershipService;
 import com.system.powerup.services.SignUpService;
 import jakarta.validation.Valid;
@@ -19,11 +22,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/admin")
 public class AdminController {
+    private final CategoryService categoryService;
+    private final SignUpService signUpService;
+
     private final AdminService adminService;
     private final MembershipService membershipService;
     @GetMapping("/list")
@@ -31,16 +38,22 @@ public class AdminController {
 
         List<Membership> memberships = membershipService.fetchAll();
 
+        model.addAttribute("members", memberships.stream().map(membership -> {
+            Category category = categoryService.fetchById(membership.getCategory_id().getId());
+            Admin admin = adminService.fetchById(membership.getPrice_id().getId());
+            SignUp user = signUpService.fetchById(membership.getUser_id().getId());
 
-        model.addAttribute("members", memberships.stream().map(membership ->
-                Membership.builder()
-                        .id(membership.getId())
-                        .category(membership.getCategory())
-                        .duration(membership.getDuration())
-                        .user_id(membership.getUser_id())
-                        .build()
+            return Membership.builder()
+                    .id(membership.getId())
+                    .category_id(membership.getCategory_id())
+                    .price_id(membership.getPrice_id())
+                    .user_id(membership.getUser_id())
+                    .category_id(category)
+                    .price_id(admin)
+                    .user_id(user)
+                    .build();
+        }).collect(Collectors.toList()));
 
-        ));
         return "User/user_list";
     }
 
@@ -73,9 +86,9 @@ public class AdminController {
     }
     @GetMapping("/edit/{id}")
     public String getPrice(@PathVariable("id") Integer id,Model model){
-//        Admin admin = adminService.fetchById(id);
-        model.addAttribute("price",adminService.fetchById(id));
-        return "redirect:/admin/create";
+        Admin admin = adminService.fetchById(id);
+        model.addAttribute("price",admin);
+        return "User/create";
     }
 
 

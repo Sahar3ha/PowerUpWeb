@@ -53,7 +53,9 @@
 <div class="contents" id="myform">
        
         <form th:method="post" th:action="@{/saveMembership}" th:object="${member}" class="login_form">
-            <input  hidden th:value="${userdata.id}"  name="user_id"  type="text"  required class="pinputs">
+            <input  th:value="${userdata.id}"  name="user_id"  type="text"  required class="pinputs">
+<!--            <input  th:value="${up.id}"  name="id"  type="text"  required class="pinputs">-->
+
             <div>
                 <h1 class="login_title">
                     <span>Membership Registration</span>
@@ -67,20 +69,18 @@
 
                     <div class="apply">
                         <label >Applying for :</label>
-                        <select th:field="*{category}" name="category" required class="pinputs">
+                        <select th:field="*{category_id}" name="category" required class="pinputs">
                             <option th:value="${categories}" selected>Select Category</option>
                             <th:block th:each="cat : ${categories}">
-                                <option th:value="${cat}" th:text="${cat}"></option>
+                                <option th:value="${cat.id}" th:text="${cat.category}"></option>
                             </th:block>
                         </select>
                     </div>
-                    <div class="period" >
-                        <input  type="checkbox" class="checkboxes" th:field="*{duration}" th:value="${priceTable.}"  id="1" onclick="fn()" />
-                        <label>1 month</label>
-                        <input type="checkbox" class="checkboxes" th:field="*{duration}" th:value="${'6 months'}"  id="6" onclick="fn()" />
-                        <label>6 month</label>
-                        <input type="checkbox" class="checkboxes" th:field="*{duration}" th:value="${'12 months'}" id="12" onclick="fn()"/>
-                        <label>12 month</label>
+                    <div class="period" th:each="price:${priceTable}">
+                        <label>
+                            <input type="checkbox" class="checkboxes" th:field="*{price_id}" th:value="${price.id}" onclick="fn()">
+                            <span th:text="${price.duration}"></span>
+                        </label>
                     </div>
                 </div>
                
