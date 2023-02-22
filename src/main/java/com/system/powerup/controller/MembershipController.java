@@ -47,6 +47,7 @@ public class MembershipController {
         model.addAttribute("tab1Active", true);
         model.addAttribute("tab2Active", false);
         model.addAttribute("tab3Active", false);
+        SignUp signUp = signUpService.fetchById(id);
 
 
         model.addAttribute("userdata",signUpService.fetchById(id));

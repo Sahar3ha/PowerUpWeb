@@ -163,7 +163,7 @@
                                     <tbody>
                                     <tr th:each="price:${priceTable}">
                                         <td th:text="${price.duration}">
-                                        <td th:text="${price.price}">
+                                        <td th:text="'Rs. '+${price.price}">
 
                                         </td>
 
@@ -204,7 +204,7 @@
                                     <tbody>
                                     <tr th:each="price:${priceTable}">
                                         <td th:text="${price.duration}">
-                                        <td th:text="${price.price}">
+                                        <td th:text="'Rs. '+${price.price}">
 
                                     </td>
 
@@ -243,7 +243,7 @@
                                     <tbody>
                                     <tr th:each="price:${priceTable}">
                                         <td th:text="${price.duration}">
-                                        <td th:text="Rs+${price.price}">
+                                        <td th:text="'Rs. '+${price.price}">
 
                                         </td>
 

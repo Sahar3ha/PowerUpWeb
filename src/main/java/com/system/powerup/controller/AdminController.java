@@ -5,6 +5,7 @@ import com.system.powerup.Entity.Category;
 import com.system.powerup.Entity.Membership;
 import com.system.powerup.Entity.SignUp;
 import com.system.powerup.pojo.AdminPojo;
+import com.system.powerup.pojo.MembershipPojo;
 import com.system.powerup.pojo.SignUpPojo;
 import com.system.powerup.services.AdminService;
 import com.system.powerup.services.CategoryService;
@@ -81,6 +82,7 @@ public class AdminController {
 
     @GetMapping("/create")
     public String editPrice(Model model) {
+
         model.addAttribute("price",new AdminPojo());
         return "User/create";
     }
@@ -94,6 +96,9 @@ public class AdminController {
 
     @GetMapping("/{id}")
     public String deletePrice(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+        Membership membership=new Membership();
+        membership.setPrice_id(null);
+//        membershipService.deleteById(id);
         adminService.deleteById(id);
         redirectAttributes.addFlashAttribute("deleteMsg", "Row delete successfully");
         return "redirect:/admin/price";

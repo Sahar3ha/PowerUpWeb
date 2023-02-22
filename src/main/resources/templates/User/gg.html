@@ -36,12 +36,18 @@
                   </button>
               </li>
           </ul>
-          <div class="rbtn">
+          <div th:if="${user.id!=null}" class="rbtn">
               <button type="button"  class="Register-btn">
                   <a  th:href="@{/signup/list/}+${user.id}">Profile</a>
               </button>
 
           </div>
+          <div th:if="${user.id==null}" class="rbtn">
+          <button type="button"  class="Register-btn">
+              <a  th:href="@{/signup/list/}+${user.id}">Logout</a>
+          </button>
+
+      </div>
           <i class="ri-menu-line"></i>
       </nav>
   </header>

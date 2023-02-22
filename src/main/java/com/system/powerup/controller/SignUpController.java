@@ -97,10 +97,20 @@ public class SignUpController {
 
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable ("id") Integer id) throws IOException {
-        MembershipPojo membershipPojo=new MembershipPojo();
+//        MembershipPojo membershipPojo=new MembershipPojo();
 //        membershipPojo.setUser_id(null);
 //        membershipPojo.setPrice_id(null);
 //        membershipPojo.setCategory_id(null);
+        membershipService.deleteById(id);
+        return "redirect:/homepage";
+    }
+    @GetMapping("/deleteAccount/{id}")
+    public String deleteAcc(@PathVariable ("id") Integer id) throws IOException {
+//        MembershipPojo membershipPojo=new MembershipPojo();
+//        membershipPojo.setUser_id(null);
+//        membershipPojo.setPrice_id(null);
+//        membershipPojo.setCategory_id(null);
+        signUpService.deleteById(id);
         membershipService.deleteById(id);
         return "redirect:/homepage";
     }

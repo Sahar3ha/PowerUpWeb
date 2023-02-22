@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Css/assets/gss.css">
+    <link rel="stylesheet" th:href="@{~/Css/assets/admin.css}">
     <script src="Js/timer.js"></script>
     <script src="../Html_daily/Js/home.js"></script>
     <script src="https://kit.fontawesome.com/e3db4c63f8.js" crossorigin="anonymous"></script>
     <title>Profile</title>
     <style>
         .table {
-            width: 100%;
+            width: 85%;
             max-width: 100%;
             margin-bottom: 1rem;
+            margin-left: 10%;
             background-color: #fff;
             border: 1px solid #dee2e6;
             color: #212529;
@@ -73,6 +74,7 @@
         .btn-danger {
             background-color: #dc3545;
             border-color: #dc3545;
+            margin-left: 11%;
         }
 
         .btn-danger:hover {
@@ -91,36 +93,22 @@
 <body>
 <header>
     <nav>
-        <h2 class="logo" > <a href=""> Power <span>Up</span></a></h2>
-        <ul >
+        <h2 class="logo">Power<span>Up</span></h2>
+        <ul>
             <li>
-                <button class="items">
-                    <a th:href="@{/homepage}">Home</a>
-                </button>
-            </li>
-            <li >
-                <button class="items">
-                    <a th:href="@{/homepage}">Contacts</a>
-                </button>
+                <a th:href="@{/admin/list}">
+                    <button class="items">Members</button>
+                </a>
             </li>
             <li>
-                <button class="items">
-                    <a th:href="@{/homepage}">Package&Plans</a>
-                </button>
+                <a th:href="@{/admin/price}">
+                    <button class="items">Pricing</button>
+                </a>
             </li>
-            <li>
-                <button class="items">
-                    <a th:href="@{/homepage}">About Us</a>
-                </button>
-            </li>
-
         </ul>
-<!--        <div class="rbtn">-->
-<!--            <button  class="Register-btn">-->
-<!--                <a th:href="@{~/signup/list/}+${userdata.id}" >Profile</a>-->
-<!--            </button>-->
-<!--        </div>-->
-        <i class="ri-menu-line"></i>
+        <div class="logout">
+            <a th:href="@{/logout}"><button class="items">Logout</button></a>
+        </div>
     </nav>
 </header>
 <div class="table-responsive">
@@ -135,12 +123,14 @@
         <tbody>
         <tr th:each="price:${priceTable}">
             <td th:text="${price.duration}"></td>
-            <td th:text="${price.price}"></td>
+            <td th:text="'Rs. '+${price.price}"></td>
             <td>
                 <a class="btn btn-primary" th:href="@{~/admin/edit/}+${price.id}">Edit</a>
                 <a class="btn btn-danger" th:href="@{~/admin/}+${price.id}">Delete</a>
             </td>
         </tr>
+        <a class="btn btn-danger" th:href="@{/admin/create}">Create</a>
+
         </tbody>
     </table>
 </div>

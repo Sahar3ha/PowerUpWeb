@@ -68,8 +68,8 @@
                 <div>
                     <button class="profilebtn">Update</button>
 
-                    <a th:href="@{~/signup/delete/}+${userList.id}">
-                        Delete
+                    <a th:href="@{~/signup/deleteAccount/}+${userList.id}">
+                        Delete Account?
                     </a>
                 </div>
             </form>
@@ -111,7 +111,7 @@
                 <div>
 
                     <button class="profilebtn">Update</button>
-                    <a th:href="@{~/signup/delete/}+${members.user_id}">
+                    <a th:href="@{~/signup/delete/}+${members.id}">
                     Delete
                     </a>
 
