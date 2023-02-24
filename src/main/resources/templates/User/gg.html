@@ -37,15 +37,15 @@
                   </button>
               </li>
           </ul>
-          <div th:if="${user.id!=null}" class="rbtn">
+          <div class="rbtn">
               <button type="button"  class="Register-btn">
                   <a  th:href="@{/signup/list/}+${user.id}">Profile</a>
               </button>
 
           </div>
-          <div th:if="${user.id==null}" class="rbtn">
+          <div  class="rbtn">
           <button type="button"  class="Register-btn">
-              <a  th:href="@{/signup/list/}+${user.id}">Logout</a>
+              <a  th:href="@{/logout}">Logout</a>
           </button>
 
       </div>
@@ -92,7 +92,7 @@
                         of lifting with professional trainers</p> 
                 </div>
                 </a>
-                <a th:href="@{/membership}">
+                    <a th:href="@{/membership/}+${user.id}">
                 <div id="boxing" class="boxing">
                     <img src="../Css/assets/chris-kendall-sJ6az6-T1u8-unsplash.jpg" alt="" class="divimg" srcset="">
                     <span>Boxing</span>
@@ -100,7 +100,7 @@
                         with our high-energy boxing classes.</p> 
                 </div>
                 </a>
-                <a th:href="@{/membership}">
+                    <a th:href="@{/membership/}+${user.id}">
                 <div id="calisthenics" class="calisthenics">
                     <img src="../Css/assets/janapan_top.jfif" alt="" class="divimg" srcset="">
                     <span>Calisthenics</span>
