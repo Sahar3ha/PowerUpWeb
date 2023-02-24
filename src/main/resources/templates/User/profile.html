@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <!-- <meta http-equiv="X-UA-Compatible" cozntent="IE=edge"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{~/Css/assets/gss.css}">
+    <link rel="stylesheet" th:href="@{~/Css/assets/gss-responsive.css}">
+
     <script th:src="@{~/Js/home.js}"></script>
     <script src="https://kit.fontawesome.com/e3db4c63f8.js" crossorigin="anonymous"></script>
     <title>Profile</title>
@@ -84,7 +86,7 @@
                 <div class="info">
                     <div>
                         <label class="plabel">Membership for</label>
-<!--                        <input type="text"  th:value="${members.category_id.category}"  name="category" required class="pinputs">-->
+                        <input type="text"  th:value="${members.category_id.category}"  name="category" required class="pinputs">
                         <select th:field="*{category_id}" required class="pinputs">
                             <option th:value="${members.category_id}" selected disabled> </option>
                             <option th:each="cat : ${categories}"
