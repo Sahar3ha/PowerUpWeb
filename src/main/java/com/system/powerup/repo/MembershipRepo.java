@@ -15,12 +15,15 @@ public interface MembershipRepo extends JpaRepository<Membership, Integer> {
 //    @Query(value = "SELECT * FROM membership WHERE user_id = ?1", nativeQuery = true)
 //    Optional<Membership> fetchById(Integer userId);
 //
+
     @Query(value = "SELECT * FROM membership WHERE user_id = ?1", nativeQuery = true)
     Optional<Membership> fetchById(Integer Id);
 
     @Query(value = "DELETE FROM membership WHERE user_id = ?1", nativeQuery = true)
     Optional<Membership> deleteAllBy(Integer Id);
 
+    @Query(value = "DELETE FROM membership WHERE id = ?1", nativeQuery = true)
+    Optional<Membership> deleteBYId(SignUp Id);
 
     @Query(value = "SELECT * FROM membership WHERE user_id = ?1", nativeQuery = true)
     Optional<List<Membership>> fetchAll(Integer userId);

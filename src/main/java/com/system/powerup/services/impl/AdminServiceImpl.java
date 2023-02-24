@@ -7,6 +7,7 @@ import com.system.powerup.services.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,12 +26,17 @@ public class AdminServiceImpl implements AdminService {
         }
         admin.setDuration(adminPojo.getDuration());
         admin.setPrice(adminPojo.getPrice());
+        int numAdmins = adminRepo.countAdmins();
+        if (numAdmins >= 3) {
+            throw new RuntimeException("Cannot add more than 3 admins");
+        }
 
         adminRepo.save(admin);
         return new AdminPojo(admin);
 
 
     }
+
     public Admin fetchById(Integer id) {
         return adminRepo.findById(id).orElseThrow(()->new RuntimeException("Not Found"));
     }
@@ -45,6 +51,10 @@ public class AdminServiceImpl implements AdminService {
     public void deleteById(Integer id) {
         adminRepo.deleteById(id);
     }
+
+
+
+
 
 
 }

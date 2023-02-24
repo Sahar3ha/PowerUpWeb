@@ -4,13 +4,15 @@ import com.system.powerup.Entity.Membership;
 import com.system.powerup.pojo.MembershipPojo;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 public interface MembershipService {
-    MembershipPojo saveMember(MembershipPojo membershipPojo)throws IOException;
+    void saveMember( MembershipPojo membershipPojo)throws IOException;
 
+    void updateMember(MembershipPojo membershipPojo)throws IOException;
 
-    MembershipPojo updateMember(MembershipPojo membershipPojo)throws IOException;
+    void deleteById(Integer id);
 
     void deleteAllBy(Integer id);
 

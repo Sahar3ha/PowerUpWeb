@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Builder
-//@Data
+@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,7 +21,9 @@ import java.util.stream.Collectors;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "signup" )
+@Table(name = "signup", uniqueConstraints = {
+        @UniqueConstraint(name = "UNIQUE_user_email", columnNames = "email")
+})
 
 public class SignUp implements UserDetails {
     @Id

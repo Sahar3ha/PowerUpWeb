@@ -95,6 +95,7 @@
 </header>
 <form class="price-form" th:action="@{/admin/savePrice}" th:object="${price}" th:method="post">
     <input hidden name="id" th:field="*{id}" th:value="${price.id}">
+
     <div class="form-group">
         <label for="duration">Duration</label>
         <input type="text" class="form-control" id="duration" name="duration" th:field="*{duration}" th:value="${price.duration}">

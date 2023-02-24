@@ -38,7 +38,7 @@ public class SignUpServiceImpl implements SignUpService {
     }
     @Override
     public SignUpPojo updateUser(SignUpPojo signUpPojo) throws IOException {
-        SignUp signUp=new SignUp();
+        SignUp signUp;
 
         if (signUpPojo.getId() != null) {
             signUp = signUpRepo.findById(signUpPojo.getId()).orElseThrow(() -> new RuntimeException("Not Found"));

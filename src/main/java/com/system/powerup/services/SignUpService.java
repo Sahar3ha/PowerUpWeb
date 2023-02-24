@@ -13,7 +13,6 @@ public interface SignUpService {
     SignUp fetchByEmail(String email);
 
     List<SignUp> fetchAll();
-//
     SignUp fetchById(Integer id);
 
     void deleteById(Integer id);

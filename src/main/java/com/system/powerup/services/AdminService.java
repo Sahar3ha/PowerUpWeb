@@ -13,6 +13,7 @@ public interface AdminService {
     Admin fetchById(Integer id);
 
 
+
     void deleteById(Integer id);
 
 

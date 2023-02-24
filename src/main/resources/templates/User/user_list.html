@@ -3,30 +3,35 @@
     <meta charset="UTF-8">
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{~/Css/assets/gss.css}">
+    <link rel="stylesheet" th:href="@{~/Css/assets/admin.css}">
     <script src="Js/timer.js"></script>
     <script src="../Html_daily/Js/home.js"></script>
     <script src="https://kit.fontawesome.com/e3db4c63f8.js" crossorigin="anonymous"></script>
     <title>Profile</title>
     <style>
         .members-table {
-            width: 100%;
+            width: 85%;
             border-collapse: collapse;
+            margin-left: 10%;
+            margin-top: 10%;
             margin-bottom: 20px;
         }
 
         .members-table th, .members-table td {
             padding: 12px 15px;
+
             text-align: left;
         }
 
         .members-table th {
             background-color: #007bff;
             color: #fff;
+
         }
 
         .members-table td {
             border-bottom: 1px solid #ddd;
+            border-radius: 4px;
         }
 
         .members-table tbody tr:hover {
@@ -37,38 +42,27 @@
 </head>
 <body>
 <header>
-    <nav >
-        <h2 class="logo" > <a href=""> Power <span>Up</span></a></h2>
-        <ul >
+    <nav>
+        <h2 class="logo">Power<span>Up</span></h2>
+        <ul>
             <li>
-                <button class="items">
-                    <a th:href="@{/homepage}">Home</a>
-                </button>
-            </li>
-            <li >
-                <button class="items">
-                    <a th:href="@{/homepage}">Contacts</a>
-                </button>
+                <a th:href="@{/admin/list}">
+                <button class="items">Members</button>
+                </a>
             </li>
             <li>
-                <button class="items">
-                    <a th:href="@{/homepage}">Package&Plans</a>
-                </button>
-            </li>
-            <li>
-                <button class="items">
-                    <a th:href="@{/homepage}">About Us</a>
-                </button>
+                <a th:href="@{/admin/price}">
+                <button class="items">Pricing</button>
+                </a>
             </li>
         </ul>
-        <div class="rbtn">
-            <button onclick="registerbtn()" class="Register-btn">
-                <a href="/Signup.html">Register Now</a>
-            </button>
+        <div class="logout">
+            <a th:href="@{/logout}"><button class="items">Logout</button></a>
         </div>
-        <i class="ri-menu-line"></i>
     </nav>
 </header>
+
+
 <table class="members-table">
     <thead>
     <tr>
@@ -82,8 +76,8 @@
     <tr th:each="user:${members}">
         <td th:text="${user.user_id.fullName}"></td>
         <td th:text="${user.user_id.email}"></td>
-        <td th:text="${user.category}"></td>
-        <td th:text="${user.duration}"></td>
+        <td th:text="${user.category_id.category}"></td>
+        <td th:text="${user.price_id.duration}"></td>
     </tr>
     </tbody>
 </table>

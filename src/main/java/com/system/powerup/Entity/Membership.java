@@ -21,10 +21,13 @@ public class Membership {
 
 
     private Integer id;
-    @Column(name = "duration")
-    private String duration;
-    @Column(name = "category")
-    private String category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id",
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "FK_categoryId"))
+    private Category category_id;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id",
@@ -32,8 +35,11 @@ public class Membership {
             foreignKey = @ForeignKey(name = "FK_userId"))
     private SignUp user_id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "price_id",
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "FK_priceId"))
+    private Admin price_id;
 
-    public SignUp setSignUp(SignUp signUp) {
-        return signUp;
-    }
+
 }
