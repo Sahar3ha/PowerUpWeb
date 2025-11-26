@@ -1,6 +1,7 @@
 package com.system.powerup.services;
 
 import com.system.powerup.Entity.SignUp;
+import com.system.powerup.dto.SignUpDto;
 import com.system.powerup.pojo.SignUpPojo;
 
 import java.io.IOException;
@@ -8,7 +9,7 @@ import java.util.List;
 
 
 public interface SignUpService {
-    SignUpPojo saveUser(SignUpPojo signUpPojo)throws IOException;
+    SignUpDto saveUser(SignUpDto signUpDto)throws IOException;
     SignUpPojo updateUser(SignUpPojo signUpPojo)throws IOException;
     SignUp fetchByEmail(String email);
 

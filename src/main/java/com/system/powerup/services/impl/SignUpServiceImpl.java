@@ -3,6 +3,7 @@ package com.system.powerup.services.impl;
 import com.system.powerup.Entity.SignUp;
 
 import com.system.powerup.config.PasswordEncoderUtil;
+import com.system.powerup.dto.SignUpDto;
 import com.system.powerup.exception.AppException;
 import com.system.powerup.pojo.SignUpPojo;
 import com.system.powerup.repo.SignUpRepo;
@@ -19,23 +20,39 @@ import java.util.List;
 public class SignUpServiceImpl implements SignUpService {
 
     private final SignUpRepo signUpRepo;
-    @Override
-    public SignUpPojo saveUser(SignUpPojo signUpPojo) throws IOException {
-        SignUp signUp;
-        if (signUpPojo.getId() != null) {
-            signUp = signUpRepo.findById(signUpPojo.getId()).orElseThrow(() -> new RuntimeException("Not Found"));
+//    @Override
+//    public SignUpPojo saveUser(SignUpPojo signUpPojo) throws IOException {
+//        SignUp signUp;
+//        if (signUpPojo.getId() != null) {
+//            signUp = signUpRepo.findById(signUpPojo.getId()).orElseThrow(() -> new RuntimeException("Not Found"));
+//        } else {
+//            signUp = new SignUp();
+//        }
+//        signUp.setEmail(signUpPojo.getEmail());
+//        signUp.setFullName(signUpPojo.getFullName());
+//        signUp.setPassword(PasswordEncoderUtil.getInstance().encode(signUpPojo.getPassword()));
+//
+//        signUpRepo.save(signUp);
+//        return new SignUpPojo(signUp);
+//
+//
+//    }
+@Override
+public SignUpDto saveUser(SignUpDto signUpDto) throws IOException {
+    SignUp signUp = new SignUp();
+    if (signUpDto.getId() != null) {
+            signUp = signUpRepo.findById(signUpDto.getId()).orElseThrow(() -> new RuntimeException("Not Found"));
         } else {
             signUp = new SignUp();
         }
-        signUp.setEmail(signUpPojo.getEmail());
-        signUp.setFullName(signUpPojo.getFullName());
-        signUp.setPassword(PasswordEncoderUtil.getInstance().encode(signUpPojo.getPassword()));
+    signUp.setEmail(signUpDto.getEmail());
+    signUp.setFullName(signUpDto.getFullName());
+    signUp.setPassword(signUpDto.getPassword());
 
-        signUpRepo.save(signUp);
-        return new SignUpPojo(signUp);
+    return signUpRepo.save(signUp);
 
 
-    }
+}
     @Override
     public SignUpPojo updateUser(SignUpPojo signUpPojo) throws IOException {
         SignUp signUp;

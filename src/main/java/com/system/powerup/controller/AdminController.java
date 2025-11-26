@@ -11,21 +11,20 @@ import com.system.powerup.services.AdminService;
 import com.system.powerup.services.CategoryService;
 import com.system.powerup.services.MembershipService;
 import com.system.powerup.services.SignUpService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin")
 public class AdminController {
@@ -35,6 +34,7 @@ public class AdminController {
     private final AdminService adminService;
     private final MembershipService membershipService;
     @GetMapping("/list")
+    @Operation(summary = "Gets user list",description = "Fetches the registered users from database")
     public String getUSerList(Model model) {
 
         List<Membership> memberships = membershipService.fetchAll();
@@ -59,6 +59,7 @@ public class AdminController {
     }
 
     @GetMapping("/price")
+    @Operation(summary = "Gets price ")
     public String getPricePage(Model model){
 //        model.addAttribute("priceTab",new Admin());
         List<Admin> admins = adminService.fetchAll();
@@ -74,10 +75,11 @@ public class AdminController {
         ));
         return "User/price";
     }
+    @Operation(summary = "Admin sets price for the package",description = "Saves price for a package")
     @PostMapping("/savePrice")
-    public String addPrice(@Valid AdminPojo adminPojo )throws IOException {
-        adminService.save(adminPojo);
-        return "redirect:/admin/price";
+    public ResponseEntity<?> addPrice(@Valid AdminPojo adminPojo )throws IOException {
+        AdminPojo adminPojo1 = adminService.save(adminPojo);
+        return ResponseEntity.ok(adminPojo1);
     }
 
     @GetMapping("/create")
@@ -95,6 +97,7 @@ public class AdminController {
 
 
     @GetMapping("/{id}")
+    @Operation(summary = "Deletes prices for package",description = "Admin panel delete button")
     public String deletePrice(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
         Membership membership=new Membership();
         membership.setPrice_id(null);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +8,7 @@
     <link th:href="@{~/Css/assets/sign.css}" rel="stylesheet"/>
 </head>
 <body>
-   <div class="Container">
+<div class="Container">
     <div class="contents">
         <form th:method="post" th:action="@{/signup/save}" th:object="${signup}" class="sign_form">
             <div>
@@ -19,7 +19,7 @@
                     Join Us
                 </p>
             </div>
-            <div> 
+            <div>
                 <div class="signinputs">
                     <div>
                         <label class="signlabel">Full Name</label>
@@ -56,7 +56,7 @@
             </div>
         </form>
     </div>
-   </div>
+</div>
 
 </body>
 </html>
