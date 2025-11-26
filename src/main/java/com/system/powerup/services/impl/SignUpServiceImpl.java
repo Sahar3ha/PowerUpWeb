@@ -45,9 +45,11 @@ public SignUpDto saveUser(SignUpDto signUpDto) throws IOException {
         }
     signUp.setEmail(signUpDto.getEmail());
     signUp.setFullName(signUpDto.getFullName());
-    signUpRepo.save(signUp);
+    signUp.setPassword(signUpDto.getPassword());
     SignUpDto response = new SignUpDto();
-    response = signUpDto.getEmail();
+
+
+    return signUpRepo.save(response);
 
 
     return signUpDto;
