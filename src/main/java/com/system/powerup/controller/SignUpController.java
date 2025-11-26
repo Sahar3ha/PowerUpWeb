@@ -68,7 +68,7 @@ public class SignUpController {
 @PostMapping("/save" )
 public ResponseEntity<?> saveUser(@Valid @RequestBody SignUpDto signUpDto) throws IOException {
 
-    SignUpPojo savedUser = signUpService.saveUser(signUpDto);
+    SignUpDto savedUser = signUpService.saveUser(signUpDto);
 
     return ResponseEntity.ok(savedUser);
 }

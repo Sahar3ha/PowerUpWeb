@@ -2,7 +2,6 @@ package com.system.powerup.services.impl;
 
 import com.system.powerup.Entity.SignUp;
 
-import com.system.powerup.config.PasswordEncoderUtil;
 import com.system.powerup.dto.SignUpDto;
 import com.system.powerup.exception.AppException;
 import com.system.powerup.pojo.SignUpPojo;
@@ -10,7 +9,6 @@ import com.system.powerup.repo.SignUpRepo;
 import com.system.powerup.services.SignUpService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -39,19 +37,20 @@ public class SignUpServiceImpl implements SignUpService {
 //    }
 @Override
 public SignUpDto saveUser(SignUpDto signUpDto) throws IOException {
-    SignUp signUp = new SignUp();
-    if (signUpDto.getId() != null) {
-            signUp = signUpRepo.findById(signUpDto.getId()).orElseThrow(() -> new RuntimeException("Not Found"));
+    SignUp signUp ;
+    if (signUpDto.getEmail() != null) {
+            signUp = signUpRepo.findByEmail(signUpDto.getEmail()).orElseThrow(() -> new RuntimeException("Not Found"));
         } else {
             signUp = new SignUp();
         }
     signUp.setEmail(signUpDto.getEmail());
     signUp.setFullName(signUpDto.getFullName());
-    signUp.setPassword(signUpDto.getPassword());
+    signUpRepo.save(signUp);
+    SignUpDto response = new SignUpDto();
+    response = signUpDto.getEmail();
 
-    return signUpRepo.save(signUp);
 
-
+    return signUpDto;
 }
     @Override
     public SignUpPojo updateUser(SignUpPojo signUpPojo) throws IOException {
