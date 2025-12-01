@@ -8,7 +8,6 @@ import com.system.powerup.dto.SignUpDto;
 import com.system.powerup.pojo.MembershipPojo;
 import com.system.powerup.pojo.SignUpPojo;
 import com.system.powerup.repo.MembershipRepo;
-import com.system.powerup.repo.SignUpRepo;
 import com.system.powerup.services.AdminService;
 import com.system.powerup.services.CategoryService;
 import com.system.powerup.services.MembershipService;
@@ -16,24 +15,17 @@ import com.system.powerup.services.SignUpService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.security.Principal;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -60,23 +52,23 @@ public class SignUpController {
 //
 //        signUpService.saveUser(signUpPojo);
 //
-////        membershipService.saveMember(membershipPojo);
+/// /        membershipService.saveMember(membershipPojo);
 //        return "redirect:/login";
 //    }
 
 @Operation(summary = "Saves the user details",description = "saves user data and navigates to login page")
 @PostMapping("/save" )
-public ResponseEntity<?> saveUser(@Valid @RequestBody SignUpDto signUpDto) throws IOException {
+public ResponseEntity<SignUpDto> saveUser(@Valid @RequestBody SignUpPojo signUpPojo) throws IOException {
 
-    SignUpDto savedUser = signUpService.saveUser(signUpDto);
+    SignUpDto savedUser = signUpService.saveUser(signUpPojo);
 
     return ResponseEntity.ok(savedUser);
 }
 
     @Operation(summary = "Updates user details", description = "Returns updated user details")
-    @PostMapping("/update")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> updateUser(@Valid SignUpPojo signUpPojo)throws IOException {
-        SignUpPojo sign =  signUpService.updateUser(signUpPojo);
+        SignUpDto sign =  signUpService.updateUser(signUpPojo);
         return ResponseEntity.ok(sign);
     }
 

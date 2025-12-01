@@ -1,6 +1,7 @@
 package com.system.powerup.repo;
 
 import com.system.powerup.Entity.SignUp;
+import com.system.powerup.dto.SignUpDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
