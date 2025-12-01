@@ -8,6 +8,7 @@ import com.system.powerup.pojo.SignUpPojo;
 import com.system.powerup.repo.SignUpRepo;
 import com.system.powerup.services.SignUpService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class SignUpServiceImpl implements SignUpService {
-
+    @Autowired
     private final SignUpRepo signUpRepo;
 //    @Override
 //    public SignUpPojo saveUser(SignUpPojo signUpPojo) throws IOException {
@@ -35,27 +36,49 @@ public class SignUpServiceImpl implements SignUpService {
 //
 //
 //    }
-@Override
-public SignUpDto saveUser(SignUpDto signUpDto) throws IOException {
-    SignUp signUp ;
-    if (signUpDto.getEmail() != null) {
-            signUp = signUpRepo.findByEmail(signUpDto.getEmail()).orElseThrow(() -> new RuntimeException("Not Found"));
-        } else {
-            signUp = new SignUp();
-        }
-    signUp.setEmail(signUpDto.getEmail());
-    signUp.setFullName(signUpDto.getFullName());
-    signUp.setPassword(signUpDto.getPassword());
+public SignUpDto toDto(SignUp entity) {
+    SignUpDto dto = new SignUpDto();
+    dto.setFullName(entity.getFullName());
+    dto.setEmail(entity.getEmail());
+    return dto;
+}
+
+    @Override
+public SignUpDto saveUser(SignUpPojo pojo) throws IOException {
+    SignUp signUp = new SignUp();
+
+    signUp.setEmail(pojo.getEmail());
+    signUp.setFullName(pojo.getFullName());
+    signUp.setPassword(pojo.getPassword());
     SignUpDto response = new SignUpDto();
 
+    SignUp savedUser = signUpRepo.save(signUp);
 
-//    return signUpRepo.save(signUp);
+    return toDto(savedUser);
 
 
-    return signUpDto;
 }
+//    @Override
+//    public SignUpPojo updateUser(SignUpPojo signUpPojo) throws IOException {
+//        SignUp signUp;
+//
+//        if (signUpPojo.getId() != null) {
+//            signUp = signUpRepo.findById(signUpPojo.getId()).orElseThrow(() -> new RuntimeException("Not Found"));
+//        } else {
+//            signUp = new SignUp();
+//        }
+////        Controller Advice
+////        Status Code
+//        signUp.setEmail(signUpPojo.getEmail());
+//        signUp.setFullName(signUpPojo.getFullName());
+//
+//        signUpRepo.save(signUp);
+//        return new SignUpPojo(signUp);
+//
+//    }
+
     @Override
-    public SignUpPojo updateUser(SignUpPojo signUpPojo) throws IOException {
+    public SignUpDto updateUser(SignUpPojo signUpPojo) throws IOException {
         SignUp signUp;
 
         if (signUpPojo.getId() != null) {
@@ -63,14 +86,15 @@ public SignUpDto saveUser(SignUpDto signUpDto) throws IOException {
         } else {
             signUp = new SignUp();
         }
+//        Controller Advice
+//        Status Code
         signUp.setEmail(signUpPojo.getEmail());
         signUp.setFullName(signUpPojo.getFullName());
 
         signUpRepo.save(signUp);
-        return new SignUpPojo(signUp);
+        return new SignUpDto(signUp);
 
     }
-
 
 
 

@@ -6,8 +6,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 public class SignUpDto {
 
 
@@ -18,8 +18,6 @@ public class SignUpDto {
     @NotBlank(message = "Email is required")
     private String email;
 
-    @Size(min = 6, message = "Password must be at least 6 characters")
-    private String password;
 
 
 
