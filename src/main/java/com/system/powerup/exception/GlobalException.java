@@ -23,4 +23,23 @@ public class GlobalException {
         );
         return  ResponseEntity.badRequest().body(response);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ApiError> handleRuntimeException(RuntimeException ex){
+        ApiError response = new ApiError(
+                HttpStatus.BAD_REQUEST.value(),
+                "Bad Request"
+        );
+        return ResponseEntity.badRequest().body(response);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ApiError> handleGeneralErrors(Exception ex){
+        ApiError response = new ApiError(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                "Internal Server Error"
+        );
+
+        return  ResponseEntity.badRequest().body(response);
+    }
 }
