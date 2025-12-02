@@ -52,18 +52,19 @@ public class SignUpController {
 //
 //        signUpService.saveUser(signUpPojo);
 //
-/// /        membershipService.saveMember(membershipPojo);
+//
+//       membershipService.saveMember(membershipPojo);
 //        return "redirect:/login";
 //    }
 
-@Operation(summary = "Saves the user details",description = "saves user data and navigates to login page")
-@PostMapping("/save" )
-public ResponseEntity<SignUpDto> saveUser(@Valid @RequestBody SignUpPojo signUpPojo) throws IOException {
+    @Operation(summary = "Saves the user details",description = "saves user data and navigates to login page")
+    @PostMapping("/save" )
+    public ResponseEntity<SignUpDto> saveUser(@Valid @RequestBody SignUpPojo signUpPojo) throws IOException {
 
-    SignUpDto savedUser = signUpService.saveUser(signUpPojo);
+        SignUpDto savedUser = signUpService.saveUser(signUpPojo);
 
-    return ResponseEntity.ok(savedUser);
-}
+        return ResponseEntity.ok(savedUser);
+    }
 
     @Operation(summary = "Updates user details", description = "Returns updated user details")
     @PutMapping("/update/{id}")

@@ -33,8 +33,21 @@ public class SpringSecurityConfig {
     protected SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/signup/**")
-                .permitAll()
+                .requestMatchers(
+                        "/v3/api-docs/**",
+                        "/swagger-ui/**",
+                        "/swagger-ui.html",
+                        "/swagger-ui/index.html"
+
+                ).permitAll()
+
+                .requestMatchers("/api/v1/**","/v3/api-docs/**",
+                        "/swagger-ui/**",
+                        "/swagger-ui.html",
+                        "/swagger-ui/index.html","/signup/**,/admin/**").permitAll()
+
+
+                
                 .requestMatchers("/admin/**")
                 .hasAuthority("Admin")
                 .anyRequest()
