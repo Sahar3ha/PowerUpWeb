@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/signup")
 @Tag(name = "UserController" , description = "all user related api")
